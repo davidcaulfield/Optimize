@@ -1,0 +1,15 @@
+{% extends "index.html" %}
+{% block dynamic %}
+	<div class="wrap">
+		<h1 class="login">Register</h1>
+		<form method="post">
+			<input type="text" name="fname" placeholder="first name" required>
+			<input type="text" name="lname" placeholder="last name" required>
+			<input type="text" name="email" placeholder="email" required>
+			<input type="text" name="phone" placeholder="phone number" required>
+			<input type="text" name="user" placeholder="username" required>
+			<input type="text" name="pass" placeholder="password" required>
+			<button type="submit" class="btn btn-primary btn-block btn-large">Register</button>
+		</form>
+	</div>
+{% endblock %}

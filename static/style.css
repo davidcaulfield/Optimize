@@ -14,10 +14,96 @@
     
 }
 
-body {
-	background-image: url("body_background.jpg");
-	background-repeat: no-repeat;
-	background-size:100%;
+#flex-container {
+  display: flex;
+  background: black;
+}
+
+.box-one{
+    height: 100px;
+    min-width: 100px;
+    background: gray;
+    flex-grow: 1;
+    margin: 20px;
+}
+
+.box-three{
+    height: 100px;
+    min-width: 100px;
+    background: gray;
+    flex-grow: 1;
+    margin: 20px;
+}
+
+.box-two{
+    height: 100px;
+    min-width: 100px;
+    background: gray;
+    flex-grow: 1;
+    margin: 20px;
+}
+
+.index-lables {
+    text-align: center;
+    color: white;
+    font-weight: bold;
+}
+
+.index-price{
+    text-align: center;
+    color: white;
+}
+
+.index-change{
+    text-align: center;
+    color: white;
+}
+
+.home-quote{
+    text-align: center;
+    color: black;
+    padding:15px;
+    font-family: "Caflisch Script Pro", cursive;
+    font-weight: bold;
+
+}
+
+
+
+
+/*==================LOGIN================================*/
+.login{
+    text-align: center;
+}
+
+
+.wrap{
+    width: 500px;
+    margin:auto;
+    margin-top: 150px;
+    padding:20px;
+    background: gray;
+    border:1px solid silver;
+
+}
+
+.wrap input{
+    width: 450px;
+    height: 35px;
+    margin-bottom: 10px;
+    /*border-radius: 10px;*/
+    border:1px solid;
+    border:1px solid silver;
+    padding: 5px;
+}
+
+
+
+
+
+
+.container {
+    text-align: center;
 }
 
 /* Add a black background color to the top navigation */
