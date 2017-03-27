@@ -1,0 +1,13 @@
+{% extends "index.html" %}
+{% block dynamic %}
+
+{% for i in stocks %}
+<div class="portfolio_stock">
+    <h4 class="portfolio_stock_info">Ticker: {{ stocks['i'][0] }}</h4>
+    <h4 class="portfolio_stock_info">Price: ${{ stocks['i'][1] }}</h4>
+    <p class="portfolio_stock_info">One year target: ${{ stocks['i'][2] }}</p>
+    <p class="portfolio_stock_info">P/E Ratio: {{ stocks['i'][3] }}</p>
+</div>
+{% endfor %}
+
+{% endblock %}

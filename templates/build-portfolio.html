@@ -3,7 +3,7 @@
 	
 	<div class="wrap">
 		<h1 class="login">Build your portfolio</h1>
-		<form method="post">
+		<form action="/analyze" method="post">
 			<h3>Objective</h3>
 			<input list="objective-list" name="objective" placeholder="Choose from the dropdown menu" required>
 		  		<datalist id="objective-list">
@@ -20,8 +20,9 @@
 			    	<option value="10+ years">
 			    </datalist>
 			<h3>Stocks</h3>
-			<input type="text" name="fname" placeholder="Input your list of stocks" required>
+			<input type="text" name="stocks" placeholder="Input your list of stocks" required>
 			<button type="submit" class="btn btn-primary btn-block btn-large">Analyze</button>
 		</form>
 	</div>
 {% endblock %}
+

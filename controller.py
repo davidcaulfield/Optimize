@@ -53,7 +53,6 @@ def check_register():
 	if result:
 		return render_template("register.html")
 	else:
-		# models.User.register(fname, lname, email, phone, username, password)
 		models.User.register(**request.form)
 		session['username'] = username
 		return dashboard()
@@ -66,6 +65,25 @@ def build_portfolio():
 def dashboard():
 	username = session['username']
 	return render_template("dashboard.html", user=username)
+
+@app.route("/analyze", methods=['POST'])
+def analyze():
+	objective = request.form['objective']
+	time = request.form['time']
+	stocks = request.form['stocks']
+	print(objective, time, stocks)
+	print(type(objective), type(time), type(stocks))
+	return analyzed()
+
+@app.route("/analyzed")
+def analyzed():
+	objective = request.form['objective']
+	time = request.form['time']
+	stocks = request.form['stocks']
+	print(objective, time, stocks)
+	print(type(objective), type(time), type(stocks))
+	stock = yahoo.portfolio_stocks("UTHR")
+	return render_template("analyzed.html", stocks=stock)
 
 
 

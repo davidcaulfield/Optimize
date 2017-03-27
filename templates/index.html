@@ -28,13 +28,14 @@
                     <a href="register">Register</a>
                 </li>
                 <li>
-                    <a href="#about">About</a>
+                    <a href="analyzed">About</a>
                 </li>
               </ul>
         </nav>
         {% endblock %}
         {% block dynamic %}
         <div id="flex-container">
+
             <div class="box-one">
                 <h4 class="index-lables">Dow</h4>
                 <p class="index-price">{{ dow_price }}</p>
@@ -50,6 +51,7 @@
                 <p class="index-price">${{ nasdaq_price }}</p>
                 <p class="index-change">{{ nasdaq_percent_change }}</p>
             </div>
+
         </div>
         <div>
             <h4 class="home-quote">"Know what you own, and know why you own it." - Peter Lynch</h4>
