@@ -1,12 +1,14 @@
 {% extends "index.html" %}
 {% block dynamic %}
 
-{% for i in stocks %}
+{% for j in stocks %}
+<div id="flex-container">
 <div class="portfolio_stock">
-    <h4 class="portfolio_stock_info">Ticker: {{ stocks['i'][0] }}</h4>
-    <h4 class="portfolio_stock_info">Price: ${{ stocks['i'][1] }}</h4>
-    <p class="portfolio_stock_info">One year target: ${{ stocks['i'][2] }}</p>
-    <p class="portfolio_stock_info">P/E Ratio: {{ stocks['i'][3] }}</p>
+    <h4 class="portfolio_stock_info">Ticker: {{ j['stock'][0] }}</h4>
+    <h4 class="portfolio_stock_info">Price: ${{ j['stock'][1] }}</h4>
+    <p class="portfolio_stock_info">One year target: ${{ j['stock'][2] }}</p>
+    <p class="portfolio_stock_info">P/E Ratio: {{ j['stock'][3] }}</p>
+</div>
 </div>
 {% endfor %}
 

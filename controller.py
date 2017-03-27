@@ -77,12 +77,12 @@ def analyze():
 
 @app.route("/analyzed")
 def analyzed():
-	objective = request.form['objective']
-	time = request.form['time']
-	stocks = request.form['stocks']
-	print(objective, time, stocks)
-	print(type(objective), type(time), type(stocks))
-	stock = yahoo.portfolio_stocks("UTHR")
+	# objective = request.form['objective']
+	# time = request.form['time']
+	# stocks = request.form['stocks']
+	# print(objective, time, stocks)
+	# print(type(objective), type(time), type(stocks))
+	stock = yahoo.portfolio_stocks("UTHR", "MO")
 	return render_template("analyzed.html", stocks=stock)
 
 

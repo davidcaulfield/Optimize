@@ -147,3 +147,22 @@
     text-decoration: underline;
     font-weight: bold;
 }
+
+
+
+/*==============================Analyzed===============================================*/
+
+.portfolio_stock{
+    color: white;
+    min-height: 100px;
+    min-width: 100px;
+    background: gray;
+    flex-grow: 1;
+    margin: 20px;
+    text-align: center;
+}
+
+
+
+
+

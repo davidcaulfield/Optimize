@@ -11,17 +11,34 @@ nasdaq_price, nasdaq_percent_change, nasdaq_change = nasdaq.get_price(), nasdaq.
 
 def portfolio_stocks(*args):
 	stocks = list(args)
-	for i in stocks:
-		j=0
-		b = Share(i)
+
+	dictt = []
+	j=0
+	for stock in stocks:
+		# j=stock
+		b = Share(stock)
 		price = b.get_price()
-		print(price)
-		# performance =  
+		# print(price) 
 		target = b.get_one_yr_target_price()
-		print(target)
+		# print(target)
 		pe = b.get_price_earnings_ratio()
-		print(pe)
-		help = dict(i=[stocks[j], price, target, pe])
+		# print(pe)
+		help = dict(stock=[stocks[j], price, target, pe])
 		j+=1
-		return help
+		dictt.append(help)
+	print(dictt,'''
+
+
+
+
+
+
+
+
+
+
+
+
+		''')
+	return dictt
 		# return price, target, pe
