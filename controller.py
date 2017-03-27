@@ -2,6 +2,7 @@ from flask import Flask, render_template, session, request
 import models
 # from wrapper import Global_Historical
 import wrapper
+import yahoo
 
 
 app = Flask(__name__)
@@ -10,8 +11,13 @@ app.config['SECRET_KEY'] = open('secret_key', 'rb').read()
 
 @app.route("/")
 def home():
-	prices = wrapper.x
-	return render_template("index.html")
+	# sp_price = yahoo.sp_price
+	# sp_percent_change = yahoo.sp_percent_change
+	return render_template("index.html",
+		sp_price=yahoo.sp_price,
+		sp_percent_change=yahoo.sp_percent_change,
+		nasdaq_price=yahoo.nasdaq_price,
+		nasdaq_percent_change=yahoo.nasdaq_percent_change)
 
 @app.route("/login")
 def login():

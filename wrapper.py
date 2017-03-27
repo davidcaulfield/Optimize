@@ -63,9 +63,6 @@ params = dict(
 
 
 
-
-
-
 a = Global_Historical()
 x = a.end_of_day_quote(base, params)
 print(x)
