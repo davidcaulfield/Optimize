@@ -11,7 +11,6 @@ app.config['SECRET_KEY'] = open('secret_key', 'rb').read()
 @app.route("/")
 def home():
 	prices = wrapper.x
-	print(prices)
 	return render_template("index.html")
 
 @app.route("/login")

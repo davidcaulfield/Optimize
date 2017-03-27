@@ -8,6 +8,7 @@
 #pip install requests
 import requests
 import json
+import csv
 
 #ensure config has the write permissions
 from config import _token
