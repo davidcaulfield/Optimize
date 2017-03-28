@@ -11,11 +11,10 @@ nasdaq_price, nasdaq_percent_change, nasdaq_change = nasdaq.get_price(), nasdaq.
 # dow = Share('^DJI')
 # dow_price, dow_percent_change, dow_change = dow.get_price(), dow.get_percent_change(), dow.get_change()
 
-def portfolio_stocks(*args):
-	stocks = list(args)
+def portfolio_stocks(a):
 	tickers = []
 	index = 0
-	for stock in stocks:
+	for stock in a:
 		names = [
 		'Company Name', 
 		'Ticker', 
@@ -47,11 +46,7 @@ def portfolio_stocks(*args):
 
 
 
-# c = portfolio_stocks("UTHR", "MO")
-# # print(c)
 
-# a = Share("MO")
-# print(a.get_beta())
 
 
 

@@ -29,8 +29,8 @@
 </div>
 </div>
 <div id="analyze_button">
-    <form method="get" action="/stock-info">
-    <button type="submit">Click here to get more in depth analysis on {{ i[0][1] }}!</button>
+    <form method="post" action="/stock-info/{{ i[1][1] }}">
+        <button type="submit">Click here to get more in depth analysis on {{ i[0][1] }}!</button>
     </form>
 </div>
 {% endfor %}

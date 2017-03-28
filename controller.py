@@ -1,11 +1,12 @@
 from flask import Flask, render_template, session, request
+import requests
 import models
 # from wrapper import Global_Historical
 import wrapper
 import yahoo
-from analyze import Stock
+# from analyze import Stock
+# import analyze
 
-compare_info = Stock()
 
 
 app = Flask(__name__)
@@ -65,45 +66,26 @@ def dashboard():
 def analyze():
 	objective = request.form['objective']
 	time = request.form['time']
-	stocks = request.form['stocks']
-	print(objective, time, stocks)
-	print(type(objective), type(time), type(stocks))
-	return analyzed()
+	stocks_input = request.form['stocks']
+	stocks = stocks_input.split(",")
+	return analyzed(objective, time, stocks)
 
 @app.route("/analyzed")
-def analyzed():
-	# objective = request.form['objective']
-	# time = request.form['time']
-	# stocks = request.form['stocks']
-	# print(objective, time, stocks)
-	# print(type(objective), type(time), type(stocks))
-	stock = yahoo.portfolio_stocks("UTHR", "MO")
+def analyzed(objective, time, stock_list):
+	stocks = stock_list
+	stock = yahoo.portfolio_stocks(stocks)
 	return render_template("analyzed.html", stocks=stock)
 
-@app.route("/stock-info")
-def stock_info():
-	return render_template("stock-info.html",
-		name=compare_info.name,
-		pe=compare_info.pe,
-		ey=compare_info.ey,
-		div=compare_info.div,
-		target=compare_info.target
-		)
-
-
-
-
-# print(help.get_name(),'''
-
-
-
-
-
-
-
-
-	# ''')
-	
+@app.route("/stock-info/<nn>", methods=['POST'])
+def stock_info(nn):
+	compare_info = analyze.Stock(nn)
+	return render_template("stock-info.html")
+		# name=compare_info.name,
+		# pe=compare_info.pe,
+		# ey=compare_info.ey,
+		# div=compare_info.div,
+		# target=compare_info.target
+		# )
 
 
 
@@ -116,7 +98,7 @@ def stock_info():
 
 
 if __name__=="__main__":
-	app.run(host="127.0.0.1", port=5000, debug=True)
+	app.run(host="127.0.0.1", port=5001, debug=True)
 
 
 

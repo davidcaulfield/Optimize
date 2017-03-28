@@ -1,9 +1,10 @@
 import yahoo
 
 
+
 fundamentals = yahoo.portfolio_stocks("UTHR")
 
-
+print(fundamentals)
 
 stock_price = float(fundamentals[0][2][1])
 stock_pe = float(fundamentals[0][3][1])
@@ -16,7 +17,7 @@ stock_target = float(fundamentals[0][8][1])
 
 class Stock:
 
-	def __init__(self):
+	def __init__(self, nn):
 		self.name = self.get_name()
 		# self.beta = self.compare_beta()
 		self.pe = self.compare_pe()
