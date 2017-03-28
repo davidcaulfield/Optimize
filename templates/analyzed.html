@@ -1,5 +1,19 @@
 {% extends "index.html" %}
 {% block dynamic %}
+
+<div id="flex-container">
+    <div class="portfolio_stock">
+        <h4 class="portfolio_stock_info">S&#38;P 500</h4>
+        <p class="portfolio_stock_info"> Price:$2330 </p>
+        <p class="portfolio_stock_info">P/E Ratio: 17.5x</p>
+        <p class="portfolio_stock_info">Earnings Yield: %</p>
+        <p class="portfolio_stock_info">Dividend Yield: 1.95%</p>
+        <p class="portfolio_stock_info">50 Day MA: </p>
+        <p class="portfolio_stock_info">200 Day MA</p>
+        <p class="portfolio_stock_info">Price target: $</p>
+    </div>
+</div>
+
 {% for i in stocks %}
 <div id="flex-container">
 <div class="portfolio_stock">
@@ -9,7 +23,7 @@
     <p class="portfolio_stock_info">{{ i[2][0] }}: ${{ i[2][1] }}</p>
     <p class="portfolio_stock_info">{{ i[3][0] }}: {{ i[3][1] }}x</p>
     <p class="portfolio_stock_info">{{ i[4][0] }}: {{ i[4][1] }}%</p>
-    <p class="portfolio_stock_info">{{ i[5][0] }}: {{ i[5][1] }}</p>
+    <p class="portfolio_stock_info">{{ i[5][0] }}: {{ i[5][1] }}%</p>
     <p class="portfolio_stock_info">{{ i[6][0] }}: ${{ i[6][1] }}</p>
     <p class="portfolio_stock_info">{{ i[7][0] }}: ${{ i[7][1] }}</p>
     <p class="portfolio_stock_info">{{ i[8][0] }}: ${{ i[8][1] }}</p>
@@ -24,17 +38,3 @@
 
 
 
-
-
-
-  <!-- <h4 class="portfolio_stock_info">{{ i['stock'][1] }}</h4>
-    <p class="portfolio_stock_info">One year target: ${{ i['stock'][2] }}</p>
-    <p class="portfolio_stock_info">P/E Ratio: {{ i['stock'][3] }}x</p>
-
-
-
-
-    <h4 class="portfolio_stock_info">Ticker: {{ i['stock'][0] }}</h4>
-    <h4 class="portfolio_stock_info">Price: ${{ i['stock'][1] }}</h4>
-    <p class="portfolio_stock_info">One year target: ${{ i['stock'][2] }}</p>
-    <p class="portfolio_stock_info">P/E Ratio: {{ i['stock'][3] }}x</p> -->

@@ -27,20 +27,19 @@ def portfolio_stocks(*args):
 		'200 Day MA',
 		'Price Target'
 		]
-
 		ticker = Share(stock)
 		comp_name = ticker.get_name()
 		tick = stock
 		price = ticker.get_price()
 		pe = ticker.get_price_earnings_ratio()
 		earn_yield = float(ticker.get_EPS_estimate_next_year())/float(ticker.get_price())
-		ey = float('%.4f' % earn_yield)*100
+		ey = float('%.5f' % earn_yield)*100
 		div = ticker.get_dividend_yield()
+		final_div = 0 if div == None else div
 		fifty = ticker.get_50day_moving_avg()
 		two_hundred = ticker.get_200day_moving_avg()
 		target = ticker.get_one_yr_target_price()
-
-		values = [comp_name, tick, price, pe, ey, div, fifty, two_hundred, target]
+		values = [comp_name, tick, price, pe, ey, final_div, fifty, two_hundred, target]
 		final_values = list(zip(names, values))
 		index += 1
 		tickers.append(final_values)
@@ -49,9 +48,10 @@ def portfolio_stocks(*args):
 
 
 # c = portfolio_stocks("UTHR", "MO")
-# print(c)
+# # print(c)
 
-
+# a = Share("MO")
+# print(a.get_beta())
 
 
 

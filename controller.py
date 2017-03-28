@@ -17,6 +17,7 @@ def home():
 		nasdaq_price=yahoo.nasdaq_price,
 		nasdaq_percent_change=yahoo.nasdaq_percent_change)
 
+
 @app.route("/login")
 def login():
 	return render_template("login.html")
