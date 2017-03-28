@@ -1,1 +1,12 @@
-<p>made it</p>
+{% extends "index.html" %}
+{% block dynamic %}
+<h2>{{ name }}</h2>
+<h4 class="info_titles">Price/Earnings Ratio</h4>
+<p>{{ pe }}</p>
+<h4 class="info_titles">Earnings Yield</h4>
+<p>{{ ey }}</p>
+<h4 class="info_titles">Dividend Yield</h4>
+<p>{{ div }}</p>
+<h4 class="info_titles">Target Price</h4>
+<p>{{ target }}</p>
+{% endblock %}

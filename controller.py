@@ -3,6 +3,9 @@ import models
 # from wrapper import Global_Historical
 import wrapper
 import yahoo
+from analyze import Stock
+
+compare_info = Stock()
 
 
 app = Flask(__name__)
@@ -79,10 +82,27 @@ def analyzed():
 
 @app.route("/stock-info")
 def stock_info():
-	return render_template("stock-info.html")
+	return render_template("stock-info.html",
+		name=compare_info.name,
+		pe=compare_info.pe,
+		ey=compare_info.ey,
+		div=compare_info.div,
+		target=compare_info.target
+		)
 
 
 
+
+# print(help.get_name(),'''
+
+
+
+
+
+
+
+
+	# ''')
 	
 
 
