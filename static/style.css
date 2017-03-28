@@ -153,13 +153,16 @@
 /*==============================Analyzed===============================================*/
 
 .portfolio_stock{
+    column-count: 2;
+    column-rule-style: solid;
     color: white;
     min-height: 100px;
     min-width: 100px;
     background: gray;
     flex-grow: 1;
     margin: 20px;
-    text-align: center;
+    /*text-align: center;*/
+    padding-left: 20px;
 }
 
 

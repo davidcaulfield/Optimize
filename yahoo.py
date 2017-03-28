@@ -1,5 +1,7 @@
 from yahoo_finance import Share
 
+
+
 sp = Share('^GSPC')
 sp_price, sp_percent_change, sp.change = sp.get_price(), sp.get_percent_change(), sp.get_change()
 
@@ -11,22 +13,43 @@ nasdaq_price, nasdaq_percent_change, nasdaq_change = nasdaq.get_price(), nasdaq.
 
 def portfolio_stocks(*args):
 	stocks = list(args)
-
-	dictt = []
-	j=0
+	tickers = []
+	index = 0
 	for stock in stocks:
-		# j=stock
-		b = Share(stock)
-		price = b.get_price()
-		# print(price) 
-		target = b.get_one_yr_target_price()
-		# print(target)
-		pe = b.get_price_earnings_ratio()
-		# print(pe)
-		help = dict(stock=[stocks[j], price, target, pe])
-		j+=1
-		dictt.append(help)
-	print(dictt,'''
+		names = [
+		'Company Name', 
+		'Ticker', 
+		'Price', 
+		'P/E Ratio', 
+		'Earnings Yield', 
+		'Div Yield',
+		'50 Day MA',
+		'200 Day MA',
+		'Price Target'
+		]
+
+		ticker = Share(stock)
+		comp_name = ticker.get_name()
+		tick = stock
+		price = ticker.get_price()
+		pe = ticker.get_price_earnings_ratio()
+		earn_yield = float(ticker.get_EPS_estimate_next_year())/float(ticker.get_price())
+		ey = float('%.4f' % earn_yield)*100
+		div = ticker.get_dividend_yield()
+		fifty = ticker.get_50day_moving_avg()
+		two_hundred = ticker.get_200day_moving_avg()
+		target = ticker.get_one_yr_target_price()
+
+		values = [comp_name, tick, price, pe, ey, div, fifty, two_hundred, target]
+		final_values = list(zip(names, values))
+		index += 1
+		tickers.append(final_values)
+	return tickers
+
+
+
+# c = portfolio_stocks("UTHR", "MO")
+# print(c)
 
 
 
@@ -36,9 +59,3 @@ def portfolio_stocks(*args):
 
 
 
-
-
-
-		''')
-	return dictt
-		# return price, target, pe
