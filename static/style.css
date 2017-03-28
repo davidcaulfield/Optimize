@@ -160,12 +160,16 @@
     min-width: 100px;
     background: gray;
     flex-grow: 1;
-    margin: 20px;
+    margin: 10px;
     text-align: center;
     padding-left: 20px;
 }
 
 
-
-
+#analyze_button {
+    text-align: center;
+    /*margin-bottom: 1px;*/
+    font-weight: bold;
+    background-color: black;
+}
 

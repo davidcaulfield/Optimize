@@ -77,6 +77,10 @@ def analyzed():
 	stock = yahoo.portfolio_stocks("UTHR", "MO")
 	return render_template("analyzed.html", stocks=stock)
 
+@app.route("/stock-info")
+def stock_info():
+	return render_template("stock-info.html")
+
 
 
 	
