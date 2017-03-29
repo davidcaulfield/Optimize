@@ -4,9 +4,9 @@ import models
 # from wrapper import Global_Historical
 import wrapper
 import yahoo
-# from analyze import Stock
+from analyze import Stock
 # import analyze
-
+from yahoo_finance import Share
 
 
 app = Flask(__name__)
@@ -76,21 +76,26 @@ def analyzed(objective, time, stock_list):
 	stock = yahoo.portfolio_stocks(stocks)
 	return render_template("analyzed.html", stocks=stock)
 
-@app.route("/stock-info/<nn>", methods=['POST'])
-def stock_info(nn):
-	compare_info = analyze.Stock(nn)
-	return render_template("stock-info.html")
-		# name=compare_info.name,
-		# pe=compare_info.pe,
-		# ey=compare_info.ey,
-		# div=compare_info.div,
-		# target=compare_info.target
-		# )
-
-
-
-
-
+@app.route("/stock-info/<ticker>", methods=['POST'])
+def stock_info(ticker):
+	stock = Share(ticker)
+	name = stock.get_name()
+	price = stock.get_price()
+	pe = stock.get_price_earnings_ratio()
+	EPS = float(stock.get_EPS_estimate_current_year())
+	earn_yield = float(price)/EPS
+	div = stock.get_dividend_yield()
+	final_div = 0 if div == None else div
+	target = stock.get_one_yr_target_price()
+	fifty = stock.get_50day_moving_avg()
+	two_hundred = stock.get_200day_moving_avg()
+	info = Stock(name, price, pe, earn_yield, final_div, target, fifty, two_hundred)
+	return render_template("stock-info.html",
+		name=info.name,
+		pe=info.compare_pe(),
+		ey=info.compare_earn_yield(),
+		div=info.compare_div(),
+		target=info.compare_target())
 
 
 
