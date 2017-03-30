@@ -231,7 +231,8 @@ class Stock:
 		return result
 
 
-
+# a = Beta("UTHR")
+# print(a.get_data())
 
 
 

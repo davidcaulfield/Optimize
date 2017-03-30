@@ -7,6 +7,8 @@ import yahoo
 from analyze import Stock, Beta
 # import analyze
 from yahoo_finance import Share
+from chart_data import *
+import json
 
 
 app = Flask(__name__)
@@ -76,10 +78,10 @@ def analyze():
 def analyzed(objective, time, stock_list):
 	stocks = stock_list
 	betas = []
-	for i in stocks:
-		a = Beta(i)
-		b = a.calculate_beta()
-		betas.append(b)
+	# for i in stocks:
+	# 	a = Beta(i)
+	# 	b = a.calculate_beta()
+	# 	betas.append(b)
 	stock = yahoo.portfolio_stocks(stocks)
 	print(stock)
 	return render_template("analyzed.html", stocks=stock, beta=betas)
@@ -111,6 +113,14 @@ def stock_info(ticker):
 		div=info.compare_div(),
 		target_num=target,
 		target=info.compare_target())
+
+@app.route("/chart-data/<ticker>", methods=['GET', 'POST'])
+def chart_data(ticker):
+	data = final_chart_data(ticker)
+	print(data)
+	return json.dumps(data)
+
+
 
 
 

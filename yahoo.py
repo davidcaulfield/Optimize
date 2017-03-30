@@ -24,7 +24,7 @@ def get_dow():
 dow = get_dow()
 dow_price = dow['Value']['Close']
 dow_change = dow['Value']['PercentChangeFromPreviousClose']
-print(dow_change)
+
 
 def portfolio_stocks(a):
 	tickers = []
