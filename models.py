@@ -11,6 +11,20 @@ c = conn.cursor(cursor_factory=RealDictCursor)
 class User:
 
 	@classmethod
+	def get_user_id(cls, username):
+		print('''
+
+
+
+
+
+
+			username''', type(username))
+		result = c.execute('''SELECT id FROM users WHERE username=%s;''', (username))
+		
+		return result
+
+	@classmethod
 	def login(cls, uname, pword):
 		c.execute('''SELECT * FROM users;''')
 		result = c.fetchone()

@@ -1,6 +1,7 @@
 from yahoo_finance import Share
-
-
+from config import _token
+import requests
+import json
 
 sp = Share('^GSPC')
 sp_price, sp_percent_change, sp.change = sp.get_price(), sp.get_percent_change(), sp.get_change()
@@ -8,8 +9,22 @@ sp_price, sp_percent_change, sp.change = sp.get_price(), sp.get_percent_change()
 nasdaq = Share('^IXIC')
 nasdaq_price, nasdaq_percent_change, nasdaq_change = nasdaq.get_price(), nasdaq.get_percent_change(), nasdaq.get_change()
 
-# dow = Share('^DJI')
-# dow_price, dow_percent_change, dow_change = dow.get_price(), dow.get_percent_change(), dow.get_change()
+
+def get_dow():
+	base = "http://globalindiceshistorical.xignite.com/xglobalindiceshistorical.json/GetLastClosingIndexValue"
+	params = dict(
+		IdentifierType="Symbol",
+		Identifier="DJI2MN.IND_DJI",
+		_fields=["Value.Close",
+		"Value.PercentChangeFromPreviousClose"],
+		_token=_token
+		)
+	response = requests.get(base, params)
+	return response.json()
+dow = get_dow()
+dow_price = dow['Value']['Close']
+dow_change = dow['Value']['PercentChangeFromPreviousClose']
+print(dow_change)
 
 def portfolio_stocks(a):
 	tickers = []
@@ -182,8 +197,6 @@ class Stock:
 	current price. This is a bad sign because it means analysts 
 	believe the stock is going to depreciate in value.'''
 		return result
-
-
 
 
 
