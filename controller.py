@@ -77,14 +77,8 @@ def analyze():
 @app.route("/analyzed")
 def analyzed(objective, time, stock_list):
 	stocks = stock_list
-	betas = []
-	# for i in stocks:
-	# 	a = Beta(i)
-	# 	b = a.calculate_beta()
-	# 	betas.append(b)
 	stock = yahoo.portfolio_stocks(stocks)
-	print(stock)
-	return render_template("analyzed.html", stocks=stock, beta=betas)
+	return render_template("analyzed.html", stocks=stock)
 
 @app.route("/stock-info/<ticker>", methods=['POST'])
 def stock_info(ticker):
@@ -117,7 +111,6 @@ def stock_info(ticker):
 @app.route("/chart-data/<ticker>", methods=['GET', 'POST'])
 def chart_data(ticker):
 	data = final_chart_data(ticker)
-	print(data)
 	return json.dumps(data)
 
 

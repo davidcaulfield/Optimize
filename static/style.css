@@ -8,7 +8,7 @@
 }
 
 #header{
-    background-image: url("../images/nyc.jpg");
+    background-image: url("nyc.jpg");
     background-repeat:no-repeat;
     background-size:cover;
     background-position: 0% 35%;
@@ -173,21 +173,17 @@
     background-color: black;
 }
 
-.chart_button {
+#chart_button {
     text-align: center;
 }
 
-.chart_title {
-    height:70vh;
+.graph {
+    height:50vh;
     width:100%;
     padding:0;
     background-color: white;
     display: none;
-    text-align:center;
 }
-
-
-
 
 
 /*==============================Stock Info===============================================*/

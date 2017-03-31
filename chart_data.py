@@ -19,7 +19,11 @@ def get_sp():
 	for day in datee:
 		correct = str(day)[:10]
 		date_list.append(correct)
-	return dict(date_list=date_list, adj_list=adj_list)
+	sp_name = ['S&P500']
+	sp_final = sp_name+adj_list
+	# date_name = ['Dates']
+	final_date = date_list
+	return dict(date_list=final_date, adj_list=sp_final)
 
 
 def get_stock_data(ticker):
@@ -28,7 +32,9 @@ def get_stock_data(ticker):
 	stock = web.DataReader(ticker,'yahoo', start_date, end_date)
 	adj = stock['Adj Close']
 	adj_list = adj.tolist()
-	return adj_list
+	name = [ticker]
+	final = name+adj_list
+	return final
 
 def final_chart_data(ticker):
 	sp = get_sp()

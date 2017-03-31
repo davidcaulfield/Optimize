@@ -37,7 +37,11 @@
         <button type="submit">Click here to get more in depth analysis on {{ i[0][1] }}!</button>
     </form>
 </div>
-<div class="graph">
+<div class="chart_title">
+    <h4>{{ i[1][1] }} Graph</h4>
+    <div id="graph">
+    </div>
+    <button type="submit" class="close_graph">Close Graph</button>
 </div>
 {% endfor %}
 {% endblock %}

@@ -48,7 +48,7 @@ def portfolio_stocks(a):
 		pe = ticker.get_price_earnings_ratio()
 		EPS = ticker.get_EPS_estimate_current_year()
 		earn_yield = float(EPS)/float(price) if EPS else 0
-		ey = float('%.5f' % float(earn_yield))*100
+		ey = float('%.4f' % float(earn_yield))*100
 		div = ticker.get_dividend_yield()
 		final_div = 0 if div == None else div
 		fifty = ticker.get_50day_moving_avg()
@@ -197,7 +197,6 @@ class Stock:
 	current price. This is a bad sign because it means analysts 
 	believe the stock is going to depreciate in value.'''
 		return result
-
 
 
 
