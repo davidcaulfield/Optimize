@@ -13,16 +13,20 @@ def get_sp():
 	start_date = end_date - timedelta(days=252)
 	sp = web.DataReader('^GSPC','yahoo', start_date, end_date)
 	adj = sp['Adj Close']
-	adj_list = adj.tolist()
+	first_price = adj.iloc[0]
+	percent_returns = lambda x: (x/first_price-1)*100
+	returns = adj.apply(percent_returns)
+	returns_list = returns.tolist()
+	print(returns_list)
 	datee = sp.index.values
 	date_list = []
 	for day in datee:
 		correct = str(day)[:10]
 		date_list.append(correct)
 	sp_name = ['S&P500']
-	sp_final = sp_name+adj_list
-	# date_name = ['Dates']
-	final_date = date_list
+	sp_final = sp_name+returns_list
+	date_name = ['Dates']
+	final_date = date_name+date_list
 	return dict(date_list=final_date, adj_list=sp_final)
 
 
@@ -31,9 +35,12 @@ def get_stock_data(ticker):
 	start_date = end_date - timedelta(days=252)
 	stock = web.DataReader(ticker,'yahoo', start_date, end_date)
 	adj = stock['Adj Close']
-	adj_list = adj.tolist()
+	first_price = adj.iloc[0]
+	percent_returns = lambda x: (x/first_price-1)*100
+	returns = adj.apply(percent_returns)
+	returns = returns.tolist()
 	name = [ticker]
-	final = name+adj_list
+	final = name+returns
 	return final
 
 def final_chart_data(ticker):
@@ -41,3 +48,5 @@ def final_chart_data(ticker):
 	stock = get_stock_data(ticker)
 	sp['ticker'] = stock
 	return sp
+
+print(get_sp())

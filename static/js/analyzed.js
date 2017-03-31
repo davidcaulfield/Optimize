@@ -28,23 +28,13 @@ $(document).ready(function(){
                         stock
 
                     ],
-                    axes:{
-                        'S&P500':'y2'
-                    }
                 },
                 axis: {
                     y:{
                         label: {
-                            text:"Price",
+                            text:"Percent Change",
                             position:'inner-middle'
                         }
-                    },
-                    y2:{
-                        show:true,
-                        label: {
-                            text:"SP",
-                            position:'inner-middle'
-                        } 
                     },
                     x: {
                         type: 'timeseries',
