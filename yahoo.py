@@ -61,21 +61,6 @@ def portfolio_stocks(a):
 	return tickers
 
 
-
-
-# fundamentals = portfolio_stocks()
-
-# print(fundamentals)
-
-# stock_price = float(fundamentals[0][2][1])
-# stock_pe = float(fundamentals[0][3][1])
-# stock_ey = float(fundamentals[0][4][1])
-# stock_div = float(fundamentals[0][5][1])
-# # stock_fifty = fundamentals[0][][]
-# # stock_two_hundred = fundamentals[0]
-# stock_target = float(fundamentals[0][8][1])
-
-
 class Stock:
 
 	def __init__(self, nn):
@@ -86,10 +71,8 @@ class Stock:
 		self.div = self.compare_div()
 		self.target = self.compare_target()
 
-	def get_name(self):
-		return fundamentals[0][0][1]
-
-
+	# def get_name(self):
+	# 	return fundamentals[0][0][1]
 
 	def compare_beta(self):
 		if stock_beta < 1:

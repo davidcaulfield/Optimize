@@ -45,24 +45,24 @@ class Beta:
 
 	def calculate_beta(self):
 		covariance = self.compute_covariance()
-		beta = covariance[0,1]/covariance[1,1]
-		print('Beta', beta)
+		beta = '%.2f' % (covariance[0,1]/covariance[1,1])
+		print("beta", beta, type(beta))
 		return beta
 
 	def compare_beta(self):
 		stock_beta = self.calculate_beta()
-		if stock_beta < 1:
+		if float(stock_beta) < 1:
 			result = "This stock is risky than the market."
-		elif stock_beta < 0:
+		elif float(stock_beta) < 0:
 			result = '''This stock tends to move in the opposite direction.
 	This property gives the investor protection when the market falls.'''
-		elif stock_beta >= 1 and stock_beta <= 1.3:
+		elif float(stock_beta) >= 1 and float(stock_beta) <= 1.3:
 			result = '''This stock tends to move in the same direction as the market, 
 	but its movements are slightly more dramatic. When the market 
 	is rising, this stock tends to produce slightly superior returns 
 	compared to the market. When the market falls, this stock tends to 
 	fall by a greater percentage than the overall market.'''
-		elif stock_beta > 1.3:
+		elif float(stock_beta) > 1.3:
 			result = '''This stock has been significantly more volitale than the market
 	in the past and this makes it a risky stock to hold. This company tends
 	to be 50\%' more volitale than the market. This means that when the 

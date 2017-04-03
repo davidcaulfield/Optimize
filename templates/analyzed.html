@@ -1,6 +1,5 @@
 {% extends "index.html" %}
 {% block dynamic %}
-
 <div id="flex-container">
     <div class="portfolio_stock">
         <h4 class="portfolio_stock_info">S&#38;P 500</h4>
@@ -38,12 +37,17 @@
     </form>
 </div>
 <div class="chart_title">
-    <h4>{{ i[1][1] }} Graph</h4>
+    <h4>{{ i[1][1] }} vs S&#38;P500 Graph</h4>
     <div id="graph">
     </div>
     <button type="submit" class="close_graph">Close Graph</button>
 </div>
 {% endfor %}
+<div id="portfolio_graph">
+    <h4 class="chart_title">Your portfolio vs S&#38;P500</h4>
+    <div id="portfolio_vs_sp" data-returns="{{ portfolio }}">
+    </div> 
+</div>
 {% endblock %}
 
 

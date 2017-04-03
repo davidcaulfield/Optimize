@@ -76,9 +76,11 @@ def analyze():
 
 @app.route("/analyzed")
 def analyzed(objective, time, stock_list):
-	stocks = stock_list
-	stock = yahoo.portfolio_stocks(stocks)
-	return render_template("analyzed.html", stocks=stock)
+	stock = yahoo.portfolio_stocks(stock_list)
+	portfolio = portfolio_returns(stock_list)
+	final = final_portfolio_returns(portfolio)
+	json_portfolio = json.dumps(final)
+	return render_template("analyzed.html", stocks=stock, portfolio=json_portfolio)
 
 @app.route("/stock-info/<ticker>", methods=['POST'])
 def stock_info(ticker):
@@ -88,12 +90,14 @@ def stock_info(ticker):
 	pe = stock.get_price_earnings_ratio()
 	EPS = float(stock.get_EPS_estimate_current_year())
 	earn_yield = float(price)/EPS
+	final_yield = '%.2f' % earn_yield
+	print(final_yield)
 	div = stock.get_dividend_yield()
 	final_div = 0 if div == None else div
 	target = stock.get_one_yr_target_price()
 	fifty = stock.get_50day_moving_avg()
 	two_hundred = stock.get_200day_moving_avg()
-	info = Stock(name, price, pe, earn_yield, final_div, target, fifty, two_hundred)
+	info = Stock(name, price, pe, final_yield, final_div, target, fifty, two_hundred)
 	beta = Beta(ticker)
 	return render_template("stock-info.html",
 		name=info.name,
@@ -101,7 +105,7 @@ def stock_info(ticker):
 		beta=beta.compare_beta(),
 		pe_num = pe,
 		pe=info.compare_pe(),
-		ey_num=earn_yield,
+		ey_num=final_yield,
 		ey=info.compare_earn_yield(),
 		div_num=final_div,
 		div=info.compare_div(),

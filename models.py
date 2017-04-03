@@ -12,27 +12,16 @@ class User:
 
 	@classmethod
 	def get_user_id(cls, username):
-		print('''
-
-
-
-
-
-
-			username''', type(username))
-		result = c.execute('''SELECT id FROM users WHERE username=%s;''', (username))
-		
-		return result
+		result = c.execute('''SELECT id FROM users WHERE username=(%s);''', (username,))
+		res = c.fetchone()
+		return res
 
 	@classmethod
 	def login(cls, uname, pword):
 		c.execute('''SELECT * FROM users;''')
 		result = c.fetchone()
-		print(result)
-		print(uname, pword)
 		c.execute("SELECT * FROM users WHERE username=(%s) AND password=(%s);", (uname, pword))
 		result = c.fetchone()
-		print(result)
 		if result:
 			return True
 		else:
@@ -67,9 +56,6 @@ class User:
 			kwargs
 		)
 		
-
-
-
 
 
 
