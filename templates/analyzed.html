@@ -46,17 +46,34 @@
 <div id="portfolio_graph">
     <h2 class="portfolio_chart_title">Your Portfolio vs S&#38;P500</h2>
     <h4 class="portfolio_chart_title">1 year performance</h4>
-    <h5 class="total_returns">Portfolio Return: {{ one_yr_change }}%, S&#38;P500 Return: {{ sp_one_yr_change }}%</h5>
+    <h5 class="total_returns">Portfolio Return: {{ one_yr_change }}%     S&#38;P500 Return: {{ sp_one_yr_change }}%</h5>
+    {% if one_yr_change > sp_one_yr_change %}
+    <h4 class="win">YOUR PORTFOLIO BEAT THE MARKET!!!!</h4>
+    {% else %}
+    <h4 class="lose">The market beat your portfolio</h4>
+    {% endif %}
     <div id="portfolio_vs_sp" data-returns="{{ portfolio }}">
     </div>
 </div>
 <div id="portfolio_graph_three">
     <h4 class="portfolio_chart_title">3 year performance</h4>
+    <h5 class="total_returns">Portfolio Return: {{ three_yr_change }}%     S&#38;P500 Return: {{ sp_three_yr_change }}%</h5>
+    {% if three_yr_change > sp_three_yr_change %}
+    <h4 class="win">YOUR PORTFOLIO BEAT THE MARKET!!!!</h4>
+    {% else %}
+    <h4 class="lose">The market beat your portfolio</h4>
+    {% endif %}
     <div id="portfolio_vs_sp_three" data-returns="{{ portfolio_three }}">
     </div>
 </div>
 <div id="portfolio_graph_five">
     <h4 class="portfolio_chart_title">5 year performance</h4>
+    <h5 class="total_returns">Portfolio Return: {{ five_yr_change }}%     S&#38;P500 Return: {{ sp_five_yr_change }}%</h5>
+    {% if five_yr_change > sp_five_yr_change %}
+    <h4 class="win">YOUR PORTFOLIO BEAT THE MARKET!!!!</h4>
+    {% else %}
+    <h4 class="lose">The market beat your portfolio</h4>
+    {% endif %}
     <div id="portfolio_vs_sp_five" data-returns="{{ portfolio_five }}">
     </div>   
 </div>

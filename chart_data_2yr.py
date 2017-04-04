@@ -18,6 +18,10 @@ def get_sp_three():
 	returns = adj.apply(percent_returns)
 	returnss =returns[::3]
 	returns_list = returnss.tolist()
+	short_list = []
+	for i in returns_list:
+		short = '%.2f' % i
+		short_list.append(short)
 	datee = sp.index.values
 	date_list = []
 	for day in datee:
@@ -25,7 +29,7 @@ def get_sp_three():
 		date_list.append(correct)
 	final_date_list = date_list[::3]
 	sp_name = ['S&P500']
-	sp_final = sp_name+returns_list
+	sp_final = sp_name+short_list
 	date_name = ['Dates']
 	final_date = date_name+final_date_list
 	return dict(date_list=final_date, adj_list=sp_final)
@@ -46,21 +50,22 @@ def portfolio_returns_three(tickers):
 		# returns = stock["Percent Change"].fillna(0)
 		# returns.fillna(0)
 		returnss = returns[::3]
-		# print(returnss)
 		final_list.append(returnss)			
 	grouped = zip(*final_list)
 	return grouped
 
-portfolio_returns_three(["AAPL", "MO"])
 
 def final_portfolio_returns_three(portfolio):
 	returns = ['Portfolio']
 	for i in portfolio:
 		avg_return = sum(i)/len(i)
-		returns.append(avg_return)
+		short = '%.2f' % avg_return
+		returns.append(short)
+	total_portfolio_return = float(returns[-2])
 	sp = get_sp_three()
+	total_sp_return = float('%.2f' % float(sp['adj_list'][-2]))
 	sp['Portfolio'] = returns
-	return sp
+	return sp, total_portfolio_return, total_sp_return
 
 
 
@@ -76,6 +81,10 @@ def get_sp_five():
 	returns = adj.apply(percent_returns)
 	returnss = returns[::5]
 	returns_list = returnss.tolist()
+	short_list = []
+	for i in returns_list:
+		short = '%.2f' % i
+		short_list.append(short)
 	datee = sp.index.values
 	date_list = []
 	for day in datee:
@@ -83,7 +92,7 @@ def get_sp_five():
 		date_list.append(correct)
 	final_date_list = date_list[::5]
 	sp_name = ['S&P500']
-	sp_final = sp_name+returns_list
+	sp_final = sp_name+short_list
 	date_name = ['Dates']
 	final_date = date_name+final_date_list
 	return dict(date_list=final_date, adj_list=sp_final)
@@ -110,9 +119,12 @@ def final_portfolio_returns_five(portfolio):
 	returns = ['Portfolio']
 	for i in portfolio:
 		avg_return = sum(i)/len(i)
-		returns.append(avg_return)
+		short = '%.2f' % avg_return
+		returns.append(short)
+	total_portfolio_return = float(returns[-2])
 	sp = get_sp_five()
+	total_sp_return = float('%.2f' % float(sp['adj_list'][-2]))
 	sp['Portfolio'] = returns
-	return sp
+	return sp, total_portfolio_return, total_sp_return
 
 

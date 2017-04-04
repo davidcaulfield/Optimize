@@ -221,6 +221,20 @@
 .total_returns{
     text-align: center;
 }
+
+.win{
+    text-align: center;
+    text-decoration: underline;
+    color: green;
+    font-weight: bold;
+}
+
+.lose{
+    text-align: center;
+    text-decoration: underline;
+    color: red;
+    font-weight: bold;
+}
 /*==============================Stock Info===============================================*/
 
 .info_titles{

@@ -84,11 +84,12 @@ def analyzed(objective, time, stock_list):
 	json_portfolio_one = json.dumps(final_portfolio_one)
 	
 	portfolio_three = portfolio_returns_three(stock_list)
-	final_portfolio_three = final_portfolio_returns_three(portfolio_three)
+	final_portfolio_three, three_yr_change, sp_three_yr_change = final_portfolio_returns_three(portfolio_three)
 	json_portfolio_three = json.dumps(final_portfolio_three)
 	
 	portfolio_five = portfolio_returns_five(stock_list)
-	final_portfolio_five = final_portfolio_returns_five(portfolio_five)
+	final_portfolio_five, five_yr_change, sp_five_yr_change = final_portfolio_returns_five(portfolio_five)
+	# print(five_yr_change, sp_five_yr_change, type(five_yr_change), type(sp_five_yr_change))
 	json_portfolio_five = json.dumps(final_portfolio_five)
 	
 	return render_template("analyzed.html",
@@ -97,7 +98,11 @@ def analyzed(objective, time, stock_list):
 		one_yr_change=one_yr_change,
 		sp_one_yr_change=sp_one_yr_change,
 		portfolio_three=json_portfolio_three,
-		portfolio_five=json_portfolio_five)
+		three_yr_change=three_yr_change,
+		sp_three_yr_change=sp_three_yr_change,
+		portfolio_five=json_portfolio_five,
+		five_yr_change=five_yr_change,
+		sp_five_yr_change=sp_five_yr_change)
 
 @app.route("/stock-info/<ticker>", methods=['POST'])
 def stock_info(ticker):

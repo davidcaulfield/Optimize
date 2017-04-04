@@ -34,7 +34,7 @@ $(document).ready(function(){
                 axis: {
                     y:{
                         label: {
-                            text:"Percent Change",
+                            text:"Percent Return",
                             position:'inner-middle'
                         }
                     },
@@ -108,7 +108,7 @@ $(document).ready(function(){
                 axis: {
                     y:{
                         label: {
-                            text:"Percent Change",
+                            text:"Percent Return",
                             position:'inner-middle'
                         }
                     },

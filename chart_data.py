@@ -17,14 +17,17 @@ def get_sp():
 	percent_returns = lambda x: (x/first_price-1)*100
 	returns = adj.apply(percent_returns)
 	returns_list = returns.tolist()
-	sp_total_return = returns_list[-2]
+	short_list = []
+	for i in returns_list:
+		short = '%.2f' % i
+		short_list.append(short)
 	datee = sp.index.values
 	date_list = []
 	for day in datee:
 		correct = str(day)[:10]
 		date_list.append(correct)
 	sp_name = ['S&P500']
-	sp_final = sp_name+returns_list
+	sp_final = sp_name+short_list
 	date_name = ['Dates']
 	final_date = date_name+date_list
 	return dict(date_list=final_date, adj_list=sp_final)
@@ -72,7 +75,7 @@ def final_portfolio_returns(portfolio):
 	sp = get_sp()
 	sp['Portfolio'] = returns
 	last = returns[-2]
-	sp_last = '%.2f' % sp['adj_list'][-2]
+	sp_last = '%.2f' % float(sp['adj_list'][-2])
 	return sp, last, sp_last
 
 
