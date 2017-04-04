@@ -10,14 +10,14 @@ from datetime import date, timedelta
 
 def get_sp():
 	end_date = date.today()
-	start_date = end_date - timedelta(days=252)
+	start_date = end_date - timedelta(days=365)
 	sp = web.DataReader('^GSPC','yahoo', start_date, end_date)
 	adj = sp['Adj Close']
 	first_price = adj.iloc[0]
 	percent_returns = lambda x: (x/first_price-1)*100
 	returns = adj.apply(percent_returns)
 	returns_list = returns.tolist()
-	print(returns_list)
+	sp_total_return = returns_list[-2]
 	datee = sp.index.values
 	date_list = []
 	for day in datee:
@@ -29,10 +29,9 @@ def get_sp():
 	final_date = date_name+date_list
 	return dict(date_list=final_date, adj_list=sp_final)
 
-
 def get_stock_data(ticker):
 	end_date = date.today()
-	start_date = end_date - timedelta(days=252)
+	start_date = end_date - timedelta(days=365)
 	stock = web.DataReader(ticker,'yahoo', start_date, end_date)
 	adj = stock['Adj Close']
 	first_price = adj.iloc[0]
@@ -44,18 +43,16 @@ def get_stock_data(ticker):
 	return final
 
 def final_chart_data(ticker):
-	sp = get_sp()
+	sp, last = get_sp()
 	stock = get_stock_data(ticker)
 	sp['ticker'] = stock #adding the new key value pair to dictionary
 	return sp
-
-
 
 def portfolio_returns(tickers):
 	final_list = []
 	for i in tickers:
 		end_date = date.today()
-		start_date = end_date - timedelta(days=252)
+		start_date = end_date - timedelta(days=365)
 		stock = web.DataReader(i,'yahoo', start_date, end_date)
 		adj = stock['Adj Close']
 		first_price = adj.iloc[0]
@@ -67,16 +64,15 @@ def portfolio_returns(tickers):
 	grouped = zip(*final_list)
 	return grouped
 
-
 def final_portfolio_returns(portfolio):
 	returns = ['Portfolio']
 	for i in portfolio:
-		print(i, type(i))
-		avg_return = sum(i)/len(i)
+		avg_return = '%.2f' % float(sum(i)/len(i))
 		returns.append(avg_return)
 	sp = get_sp()
 	sp['Portfolio'] = returns
-	return sp
-
+	last = returns[-2]
+	sp_last = '%.2f' % sp['adj_list'][-2]
+	return sp, last, sp_last
 
 

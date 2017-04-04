@@ -82,8 +82,6 @@ params = dict(
 	_token=_token
 )
 
-a = end_of_day_quote(base, params)
-print(a)
 
 
 

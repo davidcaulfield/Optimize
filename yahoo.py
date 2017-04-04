@@ -47,7 +47,8 @@ def portfolio_stocks(a):
 		price = ticker.get_price()
 		pe = ticker.get_price_earnings_ratio()
 		EPS = ticker.get_EPS_estimate_current_year()
-		earn_yield = float(EPS)/float(price) if EPS else 0
+		final_eps = EPS if EPS else 0
+		earn_yield = float(final_eps)/float(price) if EPS else 0
 		ey = float('%.4f' % float(earn_yield))*100
 		div = ticker.get_dividend_yield()
 		final_div = 0 if div == None else div

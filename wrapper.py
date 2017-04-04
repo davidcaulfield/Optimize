@@ -37,7 +37,6 @@ class Global_Historical:
 
 
 	def end_of_day_quote(self, base, params):
-		# print(base, params)
 		path = "xGlobalHistorical.json/GetEndOfDayQuote"
 		response = self.getUrl(base, path, params=params)
 		price, change, volume = response['LastClose'], response['ChangeFromLastClose'], response['Volume']
@@ -63,8 +62,6 @@ params = dict(
 
 
 
-a = Global_Historical()
-x = a.end_of_day_quote(base, params)
-print(x)
+
 
 

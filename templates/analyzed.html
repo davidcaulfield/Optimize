@@ -44,10 +44,26 @@
 </div>
 {% endfor %}
 <div id="portfolio_graph">
-    <h4 class="chart_title">Your portfolio vs S&#38;P500</h4>
+    <h2 class="portfolio_chart_title">Your Portfolio vs S&#38;P500</h2>
+    <h4 class="portfolio_chart_title">1 year performance</h4>
+    <h5 class="total_returns">Portfolio Return: {{ one_yr_change }}%, S&#38;P500 Return: {{ sp_one_yr_change }}%</h5>
     <div id="portfolio_vs_sp" data-returns="{{ portfolio }}">
-    </div> 
+    </div>
 </div>
+<div id="portfolio_graph_three">
+    <h4 class="portfolio_chart_title">3 year performance</h4>
+    <div id="portfolio_vs_sp_three" data-returns="{{ portfolio_three }}">
+    </div>
+</div>
+<div id="portfolio_graph_five">
+    <h4 class="portfolio_chart_title">5 year performance</h4>
+    <div id="portfolio_vs_sp_five" data-returns="{{ portfolio_five }}">
+    </div>   
+</div>
+<div id="portfolio_stats">
+    <h2 class="stats_title">Portfolio Statistics</h2>
+</div>
+
 {% endblock %}
 
 

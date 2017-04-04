@@ -9,11 +9,12 @@ class Beta:
 	def __init__(self, symbol):
 
 		self.symbol = symbol
-		self.start_date = date(2015,12,31)
-		self.end_date = date(2017,3,20)
+		self.start_date = date(2016,3,20)
+		self.end_date = date(2017,4,3)
 		self.period = 12
 		self.stock_returns = self.calculate_stock_returns()
 		self.sp_returns = self.calculate_sp_returns()
+		# self.alpha = self.calculate_alpha()
 
 	def get_data(self):
 		stock = web.DataReader(self.symbol,'yahoo',self.start_date, self.end_date)
@@ -46,7 +47,6 @@ class Beta:
 	def calculate_beta(self):
 		covariance = self.compute_covariance()
 		beta = '%.2f' % (covariance[0,1]/covariance[1,1])
-		print("beta", beta, type(beta))
 		return beta
 
 	def compare_beta(self):
@@ -80,7 +80,6 @@ class Beta:
 		beta = self.calculate_beta()
 		alpha = np.mean(self.stock_returns['stock_returns'])-beta*np.mean(self.sp_returns['sp_returns'])
 		annualized_alpha = alpha*self.period
-		print('annualized_alpha', annualized_alpha)
 		return alpha
 
 	def calculate_r_squared(self):
@@ -91,18 +90,15 @@ class Beta:
 		ss_res = np.sum(np.power(ypred-self.stock_returns['stock_returns'],2))
 		ss_tot = covariance[0,0]*(len(self.stock_returns)-1)
 		r_squared = 1.-ss_res/ss_tot
-		print('r_squared', r_squared)
 		return r_squared
 
 	def calculate_volatility(self):
 		covariance = self.compute_covariance()
 		volatility = np.sqrt(covariance[0,0])
 		volatility = volatility*np.sqrt(self.period)
-		print('volatility', volatility)
 
 	def calculate_moment(self):
 		momentum = np.prod(1+self.stock_returns['stock_returns'].tail(12).values)-1
-		print('momentum', momentum)
 		return momentum
 
 
@@ -161,7 +157,6 @@ class Stock:
 	company could be in an industry where it is normal for p/e ratios to be different
 	from the market.'''
 		elif float(self.pe) > (1.95 + 1.5):
-			print(float(self.pe))
 			result = '''This stock has a higher price-to-earnings ratio than the
 	market. This means that investors are giving this stock a higher valuation
 	than they are giving to the market. This happens for a few different reasons.
@@ -231,8 +226,6 @@ class Stock:
 		return result
 
 
-# a = Beta("UTHR")
-# print(a.get_data())
 
 
 

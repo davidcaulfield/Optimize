@@ -8,6 +8,7 @@ from analyze import Stock, Beta
 # import analyze
 from yahoo_finance import Share
 from chart_data import *
+from chart_data_2yr import *
 import json
 
 
@@ -77,10 +78,26 @@ def analyze():
 @app.route("/analyzed")
 def analyzed(objective, time, stock_list):
 	stock = yahoo.portfolio_stocks(stock_list)
-	portfolio = portfolio_returns(stock_list)
-	final = final_portfolio_returns(portfolio)
-	json_portfolio = json.dumps(final)
-	return render_template("analyzed.html", stocks=stock, portfolio=json_portfolio)
+	
+	portfolio_one = portfolio_returns(stock_list)
+	final_portfolio_one, one_yr_change, sp_one_yr_change = final_portfolio_returns(portfolio_one)
+	json_portfolio_one = json.dumps(final_portfolio_one)
+	
+	portfolio_three = portfolio_returns_three(stock_list)
+	final_portfolio_three = final_portfolio_returns_three(portfolio_three)
+	json_portfolio_three = json.dumps(final_portfolio_three)
+	
+	portfolio_five = portfolio_returns_five(stock_list)
+	final_portfolio_five = final_portfolio_returns_five(portfolio_five)
+	json_portfolio_five = json.dumps(final_portfolio_five)
+	
+	return render_template("analyzed.html",
+		stocks=stock,
+		portfolio=json_portfolio_one,
+		one_yr_change=one_yr_change,
+		sp_one_yr_change=sp_one_yr_change,
+		portfolio_three=json_portfolio_three,
+		portfolio_five=json_portfolio_five)
 
 @app.route("/stock-info/<ticker>", methods=['POST'])
 def stock_info(ticker):
@@ -91,7 +108,6 @@ def stock_info(ticker):
 	EPS = float(stock.get_EPS_estimate_current_year())
 	earn_yield = float(price)/EPS
 	final_yield = '%.2f' % earn_yield
-	print(final_yield)
 	div = stock.get_dividend_yield()
 	final_div = 0 if div == None else div
 	target = stock.get_one_yr_target_price()
