@@ -39,6 +39,11 @@ class Beta:
 		sp_return = data.dropna()
 		return sp_return
 
+	def variance(self):
+		sp = self.calculate_sp_returns()
+		returns = sp['sp_returns']
+		var = np.var(returns)
+		return var
 
 	def compute_covariance(self):
 		covariance = np.cov(self.stock_returns['stock_returns'], self.sp_returns['sp_returns'])
@@ -46,7 +51,9 @@ class Beta:
 
 	def calculate_beta(self):
 		covariance = self.compute_covariance()
-		beta = '%.2f' % (covariance[0,1]/covariance[1,1])
+		var = self.variance()
+		beta = '%.2f' % (covariance[0,1]/var)
+
 		return beta
 
 	def compare_beta(self):
@@ -76,23 +83,23 @@ class Beta:
 
 
 
-	def calculate_alpha(self):
-		beta = self.calculate_beta()
-		alpha = np.mean(self.stock_returns['stock_returns'])
-		i = float(beta)*np.mean(self.sp_returns['sp_returns'])
-		j = alpha - i
-		annualized_alpha = j*self.period
-		return annualized_alpha
+	# def calculate_alpha(self):
+	# 	beta = self.calculate_beta()
+	# 	alpha = np.mean(self.stock_returns['stock_returns'])
+	# 	i = float(beta)*np.mean(self.sp_returns['sp_returns'])
+	# 	j = alpha - i
+	# 	annualized_alpha = j*self.period
+	# 	return annualized_alpha
 
-	def calculate_r_squared(self):
-		covariance = self.compute_covariance()
-		alpha = self.calculate_alpha()
-		beta = self.calculate_beta()
-		ypred = alpha+beta*self.sp_returns['sp_returns']
-		ss_res = np.sum(np.power(ypred-self.stock_returns['stock_returns'],2))
-		ss_tot = covariance[0,0]*(len(self.stock_returns)-1)
-		r_squared = 1.-ss_res/ss_tot
-		return r_squared
+	# def calculate_r_squared(self):
+	# 	covariance = self.compute_covariance()
+	# 	alpha = self.calculate_alpha()
+	# 	beta = self.calculate_beta()
+	# 	ypred = alpha+beta*self.sp_returns['sp_returns']
+	# 	ss_res = np.sum(np.power(ypred-self.stock_returns['stock_returns'],2))
+	# 	ss_tot = covariance[0,0]*(len(self.stock_returns)-1)
+	# 	r_squared = 1.-ss_res/ss_tot
+	# 	return r_squared
 
 
 
@@ -220,6 +227,9 @@ class Stock:
 
 
 
-
+a = Beta("MO")
+print(a.variance())
+print(a.calculate_beta())
+print(a.compute_covariance())
 
 

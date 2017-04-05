@@ -11,6 +11,7 @@ from chart_data import *
 from chart_data_2yr import *
 from portfolio_stats import calculate_portfolio_beta
 import json
+from portfolio_grading import check_objective
 
 
 app = Flask(__name__)
@@ -79,20 +80,19 @@ def analyze():
 @app.route("/analyzed")
 def analyzed(objective, time, stock_list):
 	stock = yahoo.portfolio_stocks(stock_list)
-	
 	portfolio_one = portfolio_returns(stock_list)
 	final_portfolio_one, one_yr_change, sp_one_yr_change = final_portfolio_returns(portfolio_one)
 	json_portfolio_one = json.dumps(final_portfolio_one)
-	
 	portfolio_three = portfolio_returns_three(stock_list)
 	final_portfolio_three, three_yr_change, sp_three_yr_change = final_portfolio_returns_three(portfolio_three)
 	json_portfolio_three = json.dumps(final_portfolio_three)
-	
 	portfolio_five = portfolio_returns_five(stock_list)
 	final_portfolio_five, five_yr_change, sp_five_yr_change = final_portfolio_returns_five(portfolio_five)
 	json_portfolio_five = json.dumps(final_portfolio_five)
-	
 	portfolio_beta = calculate_portfolio_beta(stock_list)
+
+	obj = check_objective(objective, stock_list)
+	print(obj)
 
 	return render_template("analyzed.html",
 		stocks=stock,
