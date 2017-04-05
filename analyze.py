@@ -9,7 +9,7 @@ class Beta:
 	def __init__(self, symbol):
 
 		self.symbol = symbol
-		self.start_date = date(2016,3,20)
+		self.start_date = date(2012,3,20)
 		self.end_date = date(2017,4,3)
 		self.period = 12
 		self.stock_returns = self.calculate_stock_returns()
@@ -78,9 +78,11 @@ class Beta:
 
 	def calculate_alpha(self):
 		beta = self.calculate_beta()
-		alpha = np.mean(self.stock_returns['stock_returns'])-beta*np.mean(self.sp_returns['sp_returns'])
-		annualized_alpha = alpha*self.period
-		return alpha
+		alpha = np.mean(self.stock_returns['stock_returns'])
+		i = float(beta)*np.mean(self.sp_returns['sp_returns'])
+		j = alpha - i
+		annualized_alpha = j*self.period
+		return annualized_alpha
 
 	def calculate_r_squared(self):
 		covariance = self.compute_covariance()
@@ -91,15 +93,6 @@ class Beta:
 		ss_tot = covariance[0,0]*(len(self.stock_returns)-1)
 		r_squared = 1.-ss_res/ss_tot
 		return r_squared
-
-	def calculate_volatility(self):
-		covariance = self.compute_covariance()
-		volatility = np.sqrt(covariance[0,0])
-		volatility = volatility*np.sqrt(self.period)
-
-	def calculate_moment(self):
-		momentum = np.prod(1+self.stock_returns['stock_returns'].tail(12).values)-1
-		return momentum
 
 
 

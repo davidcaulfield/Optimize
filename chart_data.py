@@ -78,4 +78,7 @@ def final_portfolio_returns(portfolio):
 	sp_last = '%.2f' % float(sp['adj_list'][-2])
 	return sp, last, sp_last
 
-print(get_sp())
+
+
+
+

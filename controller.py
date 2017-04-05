@@ -9,6 +9,7 @@ from analyze import Stock, Beta
 from yahoo_finance import Share
 from chart_data import *
 from chart_data_2yr import *
+from portfolio_stats import calculate_portfolio_beta
 import json
 
 
@@ -89,9 +90,10 @@ def analyzed(objective, time, stock_list):
 	
 	portfolio_five = portfolio_returns_five(stock_list)
 	final_portfolio_five, five_yr_change, sp_five_yr_change = final_portfolio_returns_five(portfolio_five)
-	# print(five_yr_change, sp_five_yr_change, type(five_yr_change), type(sp_five_yr_change))
 	json_portfolio_five = json.dumps(final_portfolio_five)
 	
+	portfolio_beta = calculate_portfolio_beta(stock_list)
+
 	return render_template("analyzed.html",
 		stocks=stock,
 		portfolio=json_portfolio_one,
@@ -102,7 +104,8 @@ def analyzed(objective, time, stock_list):
 		sp_three_yr_change=sp_three_yr_change,
 		portfolio_five=json_portfolio_five,
 		five_yr_change=five_yr_change,
-		sp_five_yr_change=sp_five_yr_change)
+		sp_five_yr_change=sp_five_yr_change,
+		portfolio_beta=portfolio_beta)
 
 @app.route("/stock-info/<ticker>", methods=['POST'])
 def stock_info(ticker):
@@ -135,12 +138,6 @@ def stock_info(ticker):
 
 @app.route("/chart-data/<ticker>", methods=['GET', 'POST'])
 def chart_data(ticker):
-	print('''
-
-
-
-
-		''', ticker)
 	data = final_chart_data(ticker)
 	return json.dumps(data)
 

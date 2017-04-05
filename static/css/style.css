@@ -235,6 +235,10 @@
     color: red;
     font-weight: bold;
 }
+
+.portfolio_stats_info{
+    text-align: center;
+}
 /*==============================Stock Info===============================================*/
 
 .info_titles{

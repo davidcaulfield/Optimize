@@ -50,7 +50,6 @@ def portfolio_stocks(a):
 		final_eps = EPS if EPS else 0
 		earn_yield = float(final_eps)/float(price) if EPS else 0
 		ey = float('%.2f' % float(earn_yield))*100
-		print(ey)
 		div = ticker.get_dividend_yield()
 		final_div = 0 if div == None else div
 		fifty = ticker.get_50day_moving_avg()
