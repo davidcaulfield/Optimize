@@ -135,6 +135,12 @@ def stock_info(ticker):
 
 @app.route("/chart-data/<ticker>", methods=['GET', 'POST'])
 def chart_data(ticker):
+	print('''
+
+
+
+
+		''', ticker)
 	data = final_chart_data(ticker)
 	return json.dumps(data)
 
@@ -143,7 +149,7 @@ def chart_data(ticker):
 
 
 if __name__=="__main__":
-	app.run(host="127.0.0.1", port=5000, debug=True)
+	app.run(host="127.0.0.1", port=5001, debug=True)
 
 
 

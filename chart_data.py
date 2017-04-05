@@ -45,10 +45,10 @@ def get_stock_data(ticker):
 	final = name+returns
 	return final
 
-def final_chart_data(ticker):
-	sp, last = get_sp()
-	stock = get_stock_data(ticker)
-	sp['ticker'] = stock #adding the new key value pair to dictionary
+def final_chart_data(ticke):
+	sp = get_sp()
+	stock = get_stock_data(ticke)
+	sp['ticker'] = stock  #adding the new key value pair to dictionary
 	return sp
 
 def portfolio_returns(tickers):
@@ -78,4 +78,4 @@ def final_portfolio_returns(portfolio):
 	sp_last = '%.2f' % float(sp['adj_list'][-2])
 	return sp, last, sp_last
 
-
+print(get_sp())

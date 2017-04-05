@@ -2,8 +2,7 @@ $(document).ready(function(){
 
 
 // ============================Single Stock Graph==========================================
-    var createGraph = function(result, div){
-
+    var createGraph = function(result, tick){
         require.config({
             baseUrl: '/js',
             paths: {
@@ -14,21 +13,21 @@ $(document).ready(function(){
         require(["d3", "c3"], function(d3, c3){
             
             var data = JSON.parse(result)
+            // console.log(data)
             var cdate = data['date_list']
             cdate.unshift('Dates')
             var date = data['date_list']
-            console.log(cdate[0])
+            // console.log(cdate[0])
             date.shift()
             var sp = data['adj_list']
             var stock = data['ticker']
             var chart = c3.generate({
-                bindto: '#'+div.attr('id'),
+                bindto: '.g'+tick,
                 data: {
                     x: cdate[0],
                     columns: [cdate,
                         sp,
                         stock
-
                     ],
                 },
                 axis: {
@@ -50,28 +49,29 @@ $(document).ready(function(){
         });
     }; 
 
-    var chartButton = $('#chart_button');
+    var chartButton = $('.chart_button');
     chartButton.on('click', function() {
-
-        var graph = $('.chart_title');
+        var ticker = this.dataset.ticker
+        console.log(ticker)
+        var graph = $('.ct'+ticker);
         graph.css('display', 'block');
-        var ticker = $('.chart_button').data('ticker');
-        $.ajax(
-        {
-            url: '/chart-data/'+ticker,
+        // var ticker = $('.chart_button_div').data('ticker');
+        $.ajax({
             method: 'GET',
+            url: '/chart-data/'+ticker,
+            // method: 'GET',
             success: function(result){
                 var data = result
+                console.log(data)
                 var date = result['date_list']
                 var sp = result['adj_list']
                 var stock = result['ticker']
-                createGraph(data, $('#graph'))
+                createGraph(data, ticker)
                 $('.close_graph').on('click', function(){
                     graph.css('display','none')
                 })  
             }
-        }
-        )
+        });
 
     });
 // ====================================================================================
@@ -92,9 +92,7 @@ $(document).ready(function(){
             var dates_only = port['date_list']
             dates_only.shift()
             var sp = port['adj_list']
-            console.log(sp)
             var portfolio = port['Portfolio']
-            console.log(portfolio)
             var chart = c3.generate({
                 bindto: '#'+div.attr('id'),
                 data: {
