@@ -62,12 +62,13 @@ $(document).ready(function(){
             // method: 'GET',
             success: function(result){
                 var data = result
-                console.log(data)
                 var date = result['date_list']
                 var sp = result['adj_list']
                 var stock = result['ticker']
                 createGraph(data, ticker)
-                $('.close_graph').on('click', function(){
+                var close = $('.cg'+ticker)
+                console.log(close)
+                close.on('click', function(){
                     graph.css('display','none')
                 })  
             }
