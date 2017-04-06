@@ -26,10 +26,10 @@ dow_price = dow['Value']['Close']
 dow_change = dow['Value']['PercentChangeFromPreviousClose']
 
 
-def portfolio_stocks(a):
+def portfolio_stocks(stocks):
 	tickers = []
 	index = 0
-	for stock in a:
+	for stock in stocks:
 		names = [
 		'Company Name', 
 		'Ticker', 

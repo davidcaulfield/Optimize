@@ -7,56 +7,6 @@ from datetime import date, timedelta
 from analyze import Beta
 
 
-# class Portfolio:
-
-# 	def __init__(self, tickers):
-# 		self.tickers = tickers
-# 		self.end_date = date.today()
-# 		self.start_date = self.end_date - timedelta(days=365)
-# 		self.sp_returns = self.get_sp_returns()
-# 		self.portfolio_data = self.portfolio_data()
-# 		self.portfolio_returns = self.portfolio_returns()
-# 		self.combine = self.combine()
-
-
-
-# 	def get_sp_returns(self):
-# 		sp = web.DataReader('^GSPC','yahoo',self.start_date, self.end_date)
-# 		data = pd.DataFrame({'sp_adj_close':sp['Adj Close']}, index=sp.index) #creates dataframe with sp prices and dates
-# 		data[['sp_returns']] = (data[['sp_adj_close']]-data[['sp_adj_close']].shift(1))/data[['sp_adj_close']].shift(1)*100
-# 		sp_returns = data.dropna()
-# 		final = sp_returns['sp_returns']
-# 		a = final.tolist()
-# 		b = np.array(a)
-# 		return b
-
-# 	def portfolio_data(self):
-# 		a = []
-# 		for i in self.tickers:
-# 			stock = web.DataReader(i,'yahoo',self.start_date, self.end_date)
-# 			data = pd.DataFrame({'stock_adj_close':stock['Adj Close']}, index=stock.index)
-# 			data[['stock_returns']] = (data[['stock_adj_close']]-data[['stock_adj_close']].shift(1))/data[['stock_adj_close']].shift(1)*100
-# 			stock_return = data.dropna()
-# 			change_list = stock_return['stock_returns']
-# 			a.append(change_list)
-# 		group = zip(*a)
-# 		return group
-
-# 	def portfolio_returns(self):
-# 		portfolio = self.portfolio_data
-# 		final = []
-# 		for i in portfolio:
-# 			stock = sum(i)/len(i)
-# 			final.append(stock)
-# 		finals = np.array(final)
-# 		return finals
-
-# 	def combine(self):
-# 		a = self.portfolio_returns
-# 		b = self.sp_returns
-# 		c = np.cov(a, b)
-# 		return c
-
 def portfolio_beta_list(stocks):
 	beta_list = []
 	for i in stocks:

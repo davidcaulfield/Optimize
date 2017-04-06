@@ -13,7 +13,7 @@
         <p class="portfolio_stock_info">Price target: $</p>
     </div>
 </div>
-
+<h2 class="stock_list">Stock List</h2>
 {% for i in stocks %}
 <div id="flex-container">
 <div class="portfolio_stock">
@@ -85,10 +85,17 @@
     <h4 class="portfolio_stats_info">Portfolio Return 5yr: {{ five_yr_change }}%</h4>
 </div>
 <div class="portfolio_explaniation">
-    <h3 class="explaniation_title">Portfolio Beta</h3>
-    <p class="explained">{{ portfolio_stats[0] }}</p>
-    <h3 class="explaniation_title">Other Information</h3>
-    <p class="explained"> {{ portfolio_stats[1] }}
+    {% if objective == "Speculation" %}
+        <h3 class="explaniation_title">Portfolio Beta</h3>
+        <p class="explained">{{ portfolio_stats[0] }}</p>
+        <h3 class="explaniation_title">Other Information</h3>
+        <p class="explained"> {{ portfolio_stats[1] }}
+    {% elif objective == 'Income' %}
+        <h3 class="explaniation_title">Portfolio Beta</h3>
+        <p class="explained">{{ portfolio_stats[0] }}</p>
+        <h3 class="explaniation_title">Dividend Yield</h3>
+        <p class="explained"> {{ portfolio_stats[1] }}
+    {% endif %}
 </div>
 
 {% endblock %}

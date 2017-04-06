@@ -17,6 +17,7 @@ class Beta:
 		# self.alpha = self.calculate_alpha()
 
 	def get_data(self):
+		print(self.symbol)
 		stock = web.DataReader(self.symbol,'yahoo',self.start_date, self.end_date)
 		return stock
 
@@ -227,9 +228,6 @@ class Stock:
 
 
 
-a = Beta("MO")
-print(a.variance())
-print(a.calculate_beta())
-print(a.compute_covariance())
+
 
 

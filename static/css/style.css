@@ -151,6 +151,11 @@
 
 
 /*==============================Analyzed===============================================*/
+.stock_list{
+    text-align: center;
+    text-decoration: underline;
+    font-weight: bold;
+}
 
 .portfolio_stock{
     column-count: 2;
@@ -191,6 +196,7 @@
 .portfolio_chart_title{
     text-align: center;
     text-decoration: underline;
+    font-weight: bold;
 }
 
 

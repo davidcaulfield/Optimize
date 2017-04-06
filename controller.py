@@ -104,6 +104,7 @@ def analyzed(objective, time, stock_list):
 		portfolio_five=json_portfolio_five,
 		five_yr_change=five_yr_change,
 		sp_five_yr_change=sp_five_yr_change,
+		objective =objective,
 		portfolio_beta=portfolio_beta,
 		portfolio_stats=obj)
 
