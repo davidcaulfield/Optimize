@@ -92,6 +92,7 @@ def analyzed(objective, time, stock_list):
 	portfolio_beta = calculate_portfolio_beta(stock_list)
 
 	obj = check_objective(objective, stock_list)
+	
 	print(obj)
 
 	return render_template("analyzed.html",
@@ -105,7 +106,8 @@ def analyzed(objective, time, stock_list):
 		portfolio_five=json_portfolio_five,
 		five_yr_change=five_yr_change,
 		sp_five_yr_change=sp_five_yr_change,
-		portfolio_beta=portfolio_beta)
+		portfolio_beta=portfolio_beta,
+		portfolio_stats=obj)
 
 @app.route("/stock-info/<ticker>", methods=['POST'])
 def stock_info(ticker):

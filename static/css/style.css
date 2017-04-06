@@ -239,12 +239,25 @@
 .portfolio_stats_info{
     text-align: center;
 }
+
+
+
+.explaniation_title{
+    text-align: center;
+    text-decoration: underline;
+    font-weight: bold;
+}
+
+.explained{
+    margin-left: 35px;
+    margin-right: 35px;
+}
+
 /*==============================Stock Info===============================================*/
 
 .info_titles{
     font-weight: bold;
     text-decoration: underline;
-
 }
 
 
