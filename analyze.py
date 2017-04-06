@@ -17,7 +17,6 @@ class Beta:
 		# self.alpha = self.calculate_alpha()
 
 	def get_data(self):
-		print(self.symbol)
 		stock = web.DataReader(self.symbol,'yahoo',self.start_date, self.end_date)
 		return stock
 
@@ -107,10 +106,11 @@ class Beta:
 
 class Stock:
 
-	def __init__(self, name, price, pe, earn_yield, final_div, target, fifty, two_hundred):
+	def __init__(self, name, price, market_cap, pe, earn_yield, final_div, target, fifty, two_hundred):
 		self.name = name
 		# self.beta = self.compare_beta()
 		self.price = price
+		self.market_cap = market_cap
 		self.pe = pe
 		self.ey = earn_yield
 		self.div = final_div
@@ -140,6 +140,8 @@ class Stock:
 	expect to lose significantly more than the market.'''
 		return result
 
+	def market_cap_explain(self):
+		pass
 
 	def compare_pe(self):
 		if float(self.pe) > (17.5 - 1.5) and float(self.pe) < (17.5 + 1.5):

@@ -1,6 +1,8 @@
 {% extends "index.html" %}
 {% block dynamic %}
 <h2>{{ name }}</h2>
+<h4 class="info_titles">Market cap: {{ market_cap }}</h4>
+<p>{{ }}</p>
 <h4 class="info_titles">Price/Earnings Ratio: {{ pe_num }}x</h4>
 <p>{{ pe }}</p>
 <h4 class="info_titles">Beta: {{ num_beta }}</h4>
