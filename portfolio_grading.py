@@ -10,6 +10,9 @@ def check_objective(objective, stocks, time):
 	elif objective == 'Income':
 		stock = Portfolio_info_income(stocks, time)
 		return stock.beta, stock.div
+	elif objective == 'Capital Growth':
+		stock = Portfolio_info_growth(stock, time)
+
 
 
 class Portfolio_info_speculation:
@@ -123,9 +126,7 @@ institutions to find stocks that will provide you with significantly higher yiel
 #==================================Income Beta===========================================================================
 	def check_beta(self, stocks):
 		beta_list = self.portfolio_beta_list(stocks)
-		print(beta_list, 'g')
 		score = self.score_betas(beta_list)
-		print(len(beta_list))
 		if score/len(beta_list) < .75:
 			return '''More than 25% of the stocks in this portfolio a have a beta that is significantly
 higher than the market beta of 1. This is not a good sign in a portfolio designed around an income objective.
@@ -146,7 +147,6 @@ recieve the dividends.'''
 			stock = Beta(i)
 			beta = float(stock.calculate_beta())
 			beta_list.append(beta)
-		print('geting to bet_list', beta_list, type(beta_list))
 		return beta_list
 
 	def score_betas(self, beta_list):
@@ -158,6 +158,44 @@ recieve the dividends.'''
 				score+=0
 		return score
 #===============================================================================================================
+
+
+
+# class Portfolio_info_growth:
+
+# 	def __init__(self, stocks, time):
+# 		self.beta = self.check_beta(stocks)
+
+# 	def check_beta(self, stocks):
+# 		beta_list = self.portfolio_beta_list(stocks)
+# 		score = self.score_betas(beta_list)
+		
+
+# 	def portfolio_beta_list(self, stocks):
+# 		beta_list = []
+# 		for i in stocks:
+# 			stock = Beta(i)
+# 			beta = float(stock.calculate_beta())
+# 			beta_list.append(beta)
+# 		return beta_list
+
+# 	def score_betas(self, beta_list):
+# 		score = 0
+# 		for i in beta_list:
+# 			if i > 1.3 and i < 2:
+# 				score+=1
+# 			elif i < 1.3:
+# 				score+=0
+# 			elif i > 2
+# 		return score
+
+
+
+
+
+
+
+
 
 
 

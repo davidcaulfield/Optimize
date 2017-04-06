@@ -33,7 +33,8 @@ def portfolio_stocks(stocks):
 		names = [
 		'Company Name', 
 		'Ticker', 
-		'Price', 
+		'Price',
+		'Market Cap', 
 		'P/E Ratio', 
 		'Earnings Yield', 
 		'Div Yield',
@@ -45,6 +46,7 @@ def portfolio_stocks(stocks):
 		comp_name = ticker.get_name()
 		tick = stock
 		price = ticker.get_price()
+		market_cap = ticker.get_market_cap()
 		pe = ticker.get_price_earnings_ratio()
 		pe_two = float(pe) if pe else 0
 		final_pe = pe_two if float(pe_two) > 0 else 0
@@ -58,7 +60,7 @@ def portfolio_stocks(stocks):
 		fifty = ticker.get_50day_moving_avg()
 		two_hundred = ticker.get_200day_moving_avg()
 		target = ticker.get_one_yr_target_price()
-		values = [comp_name, tick, price, final_pe, ey, final_div, fifty, two_hundred, target]
+		values = [comp_name, tick, price, market_cap, final_pe, ey, final_div, fifty, two_hundred, target]
 		final_values = list(zip(names, values))
 		index += 1
 		tickers.append(final_values)
@@ -69,14 +71,11 @@ class Stock:
 
 	def __init__(self, nn):
 		self.name = self.get_name()
-		# self.beta = self.compare_beta()
 		self.pe = self.compare_pe()
 		self.ey = self.compare_earn_yield()
 		self.div = self.compare_div()
 		self.target = self.compare_target()
 
-	# def get_name(self):
-	# 	return fundamentals[0][0][1]
 
 	def compare_beta(self):
 		if stock_beta < 1:

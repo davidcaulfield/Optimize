@@ -214,7 +214,6 @@ class Stock:
 	stock is above its long term average price and is gaining momentum.''' 
 		return result
 
-
 	def compare_target(self):
 		if float(self.target) > float(self.price):
 			result = '''The target price for this stock is above its
