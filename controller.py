@@ -91,9 +91,7 @@ def analyzed(objective, time, stock_list):
 	json_portfolio_five = json.dumps(final_portfolio_five)
 	portfolio_beta = calculate_portfolio_beta(stock_list)
 
-	obj = check_objective(objective, stock_list)
-	
-	print(obj)
+	obj = check_objective(objective, stock_list, time)
 
 	return render_template("analyzed.html",
 		stocks=stock,

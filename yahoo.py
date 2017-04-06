@@ -46,16 +46,19 @@ def portfolio_stocks(a):
 		tick = stock
 		price = ticker.get_price()
 		pe = ticker.get_price_earnings_ratio()
+		pe_two = float(pe) if pe else 0
+		final_pe = pe_two if float(pe_two) > 0 else 0
 		EPS = ticker.get_EPS_estimate_current_year()
 		final_eps = EPS if EPS else 0
 		earn_yield = float(final_eps)/float(price) if EPS else 0
-		ey = float('%.2f' % float(earn_yield))*100
+		pos_ey = earn_yield if earn_yield > 0 else 0
+		ey = float('%.2f' % float(pos_ey))*100
 		div = ticker.get_dividend_yield()
 		final_div = 0 if div == None else div
 		fifty = ticker.get_50day_moving_avg()
 		two_hundred = ticker.get_200day_moving_avg()
 		target = ticker.get_one_yr_target_price()
-		values = [comp_name, tick, price, pe, ey, final_div, fifty, two_hundred, target]
+		values = [comp_name, tick, price, final_pe, ey, final_div, fifty, two_hundred, target]
 		final_values = list(zip(names, values))
 		index += 1
 		tickers.append(final_values)
