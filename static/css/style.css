@@ -53,7 +53,9 @@
 
 /*============================Block Dynamic index.html=========================*/
     
-
+/*body{
+    background-color: #33FFFF;
+}*/
 
 #flex-container{
   display: flex;
@@ -102,7 +104,6 @@
 
  #red{
     color: #ff0000;
-    font-weight: bold;
  }
 
  #green{
@@ -115,11 +116,30 @@
     color: black;
     padding:15px;
     font-family: "Caflisch Script Pro", cursive;
-    font-weight: bold;
+    font-weight: bolder;
+    font-size: 23px;
 
 }
 
+#mid_page_title{
+    color: black;
+    font-family: 'Droid serif';
+    font-style: italic;
+    font-size: 44px;
+    text-align: center;
+    text-decoration: underline;
+}
 
+.explaniation{
+    margin-right: 100px;
+    margin-left: 100px;
+    font-family: 'Droid serif';
+    font-size: 18px;
+}
+
+.jumbotron{
+    /*background-color: gray;*/
+}
 
 
 /*==================LOGIN, Register, Build Portfolio================================*/
