@@ -5,7 +5,7 @@ import models
 import wrapper
 import yahoo
 from analyze import Stock, Beta
-# import analyze
+
 from yahoo_finance import Share
 from chart_data import *
 from chart_data_2yr import *
@@ -90,9 +90,7 @@ def analyzed(objective, time, stock_list):
 	final_portfolio_five, five_yr_change, sp_five_yr_change = final_portfolio_returns_five(portfolio_five)
 	json_portfolio_five = json.dumps(final_portfolio_five)
 	portfolio_beta = calculate_portfolio_beta(stock_list)
-
 	obj = check_objective(objective, stock_list, time)
-
 	return render_template("analyzed.html",
 		stocks=stock,
 		portfolio=json_portfolio_one,
@@ -144,8 +142,6 @@ def stock_info(ticker):
 def chart_data(ticker):
 	data = final_chart_data(ticker)
 	return json.dumps(data)
-
-
 
 
 

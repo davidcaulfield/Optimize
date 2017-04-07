@@ -27,7 +27,6 @@ class Portfolio_info_speculation:
 			stock = Beta(i)
 			beta = float(stock.calculate_beta())
 			beta_list.append(beta)
-		print(beta_list)
 		return beta_list
 
 	def check_betas(self, stocks):
@@ -70,8 +69,6 @@ investors justification for holding the stock.'''
 short term price movements in stocks. If you want to hold stocks over a longer period of time you will need to choose a
 new portfolio objective.'''
 #===============================================================================================================
-
-
 
 
 class Portfolio_info_income:
@@ -159,35 +156,6 @@ recieve the dividends.'''
 		return score
 #===============================================================================================================
 
-
-
-# class Portfolio_info_growth:
-
-# 	def __init__(self, stocks, time):
-# 		self.beta = self.check_beta(stocks)
-
-# 	def check_beta(self, stocks):
-# 		beta_list = self.portfolio_beta_list(stocks)
-# 		score = self.score_betas(beta_list)
-		
-
-# 	def portfolio_beta_list(self, stocks):
-# 		beta_list = []
-# 		for i in stocks:
-# 			stock = Beta(i)
-# 			beta = float(stock.calculate_beta())
-# 			beta_list.append(beta)
-# 		return beta_list
-
-# 	def score_betas(self, beta_list):
-# 		score = 0
-# 		for i in beta_list:
-# 			if i > 1.3 and i < 2:
-# 				score+=1
-# 			elif i < 1.3:
-# 				score+=0
-# 			elif i > 2
-# 		return score
 
 
 

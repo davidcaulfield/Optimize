@@ -237,12 +237,14 @@
     display: none;
     text-align:center;
     text-decoration: underline;
+    font-family: 'Droid serif';
 }
 
 .portfolio_chart_title{
     text-align: center;
     text-decoration: underline;
     font-weight: bold;
+    font-family: 'Droid serif';
 }
 
 
@@ -267,19 +269,22 @@
 
 .stats_title{
     font-family: 'Droid serif';
-    font-size: 44px;
+    font-size: 40px;
     text-align: center;
     text-decoration: underline;
 }
 
 .total_returns{
     text-align: center;
+    font-family: 'Droid serif';
+    font-size: 15px;
 }
 
 .win{
     text-align: center;
     color: green;
     font-weight: bold;
+    font-family: 'Droid serif';
 }
 
 .lose{
@@ -302,7 +307,7 @@
     text-decoration: underline;
     /*font-weight: bold;*/
     font-family: 'Droid serif';
-    font-size: 36px;
+    font-size: 32px;
 }
 
 .explained{

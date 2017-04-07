@@ -23,7 +23,6 @@ class Beta:
 		sp = web.DataReader('^GSPC','yahoo',self.start_date, self.end_date)
 		return sp
 
-
 	def calculate_stock_returns(self):
 		stock = self.get_data()
 		data = pd.DataFrame({'stock_adj_close':stock['Adj Close']}, index=stock.index)
@@ -52,7 +51,6 @@ class Beta:
 		covariance = self.compute_covariance()
 		var = self.variance()
 		beta = '%.2f' % (covariance[0,1]/var)
-
 		return beta
 
 	def compare_beta(self):
@@ -78,13 +76,10 @@ class Beta:
 		return result
 
 
-
-
 class Stock:
 
 	def __init__(self, name, price, pe, earn_yield, final_div, target, fifty, two_hundred):
 		self.name = name
-		# self.beta = self.compare_beta()
 		self.price = price
 		self.pe = pe
 		self.ey = earn_yield
@@ -92,7 +87,6 @@ class Stock:
 		self.target = target
 		self.stock_fifty = fifty
 		self.stock_two_hundred = two_hundred
-
 
 	def compare_beta(self):
 		if stock_beta < 1:

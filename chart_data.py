@@ -5,9 +5,6 @@ import datetime
 from datetime import date, timedelta
 
 
-
-
-
 def get_sp():
 	end_date = date.today()
 	start_date = end_date - timedelta(days=365)
