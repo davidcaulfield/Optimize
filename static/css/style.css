@@ -100,6 +100,7 @@
 
 .index-change{
     text-align: center;
+    color: white;
  }
 
  #red{
@@ -145,16 +146,24 @@
 /*==================LOGIN, Register, Build Portfolio================================*/
 .login{
     text-align: center;
+    font-family: 'Droid serif';
+    text-decoration: underline;
+    font-size: 40px;
 }
 
+.build_portfolio_list{
+    font-family: 'Droid serif';
+    /*font-weight: bold;*/
+}
 
 .wrap{
     width: 500px;
-    margin:auto;
-    margin-top: 150px;
-    padding:20px;
+    margin: auto;
+    margin-top: 70px;
+    margin-bottom: 70px;
+    padding: 20px;
     background: gray;
-    border:1px solid silver;
+    border: 5px black;
 
 }
 
@@ -168,6 +177,10 @@
     padding: 5px;
 }
 
+.hhh{
+    background-color: #00CC66;
+
+}
 /*=====================================================================================*/
 
 /*==============================Dashboard===============================================*/
@@ -182,9 +195,11 @@
 
 /*==============================Analyzed===============================================*/
 .stock_list{
+    font-size: 44px;
+    font-family: 'Droid serif';
     text-align: center;
     text-decoration: underline;
-    font-weight: bold;
+    /*font-weight: bold;*/
 }
 
 .portfolio_stock{
@@ -206,6 +221,7 @@
     /*margin-bottom: 1px;*/
     font-weight: bold;
     background-color: black;
+    padding: 10px;
 }
 
 .chart_button_div{
@@ -250,6 +266,8 @@
 }
 
 .stats_title{
+    font-family: 'Droid serif';
+    font-size: 44px;
     text-align: center;
     text-decoration: underline;
 }
@@ -273,7 +291,9 @@
 }
 
 .portfolio_stats_info{
+    font-size: 24px;
     text-align: center;
+    font-family: 'Droid serif';
 }
 
 
@@ -281,12 +301,16 @@
 .explaniation_title{
     text-align: center;
     text-decoration: underline;
-    font-weight: bold;
+    /*font-weight: bold;*/
+    font-family: 'Droid serif';
+    font-size: 36px;
 }
 
 .explained{
     margin-left: 35px;
     margin-right: 35px;
+    font-family: 'Droid serif';
+    font-size: 18px;
 }
 
 /*==============================Stock Info===============================================*/

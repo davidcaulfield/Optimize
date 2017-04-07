@@ -38,6 +38,8 @@
                 <p class="index-price">${{ dow_price }}</p>
                 {% if dow_percent_change > 0 %}
                 <p id= "green" class="index-change">Daily Change: +{{ dow_percent_change }}%</p>
+                {% elif dow_percent_change == None %}
+                <p class="index-change">Daily Change: 0.00%</p>
                 {% else %}
                 <p id="red" class="index-change">Daily Change: -{{ dow_percent_change }}%</p>
                 {% endif %}
@@ -47,6 +49,8 @@
                 <p class="index-price">${{ sp_price }}</p>
                 {% if sp_percent_change[0] == "+" %}
                 <p id="green" class="index-change">Daily Change: {{ sp_percent_change }}</p>
+                {% elif sp_percent_change == None %}
+                <p class="index-change">Daily Change: 0.00%</p>
                 {% else %}
                 <p id="red" class="index-change">Daily Change: {{ sp_percent_change }}</p>
                 {% endif %}
@@ -56,6 +60,8 @@
                 <p class="index-price">${{ nasdaq_price }}</p>
                 {% if nasdaq_percent_change[0] == "+" %}
                 <p id="green" class="index-change">Daily Change: {{ nasdaq_percent_change }}</p>
+                {% elif nasdaq_percent_change == None %}
+                <p class="index-change">Daily Change: 0.00%</p>
                 {% else %}
                 <p id="red" class="index-change">Daily Change: {{ nasdaq_percent_change }}</p>
                 {% endif %}

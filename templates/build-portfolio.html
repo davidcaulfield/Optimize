@@ -1,10 +1,9 @@
 {% extends "index.html" %}
-{% block dynamic %}
-	
+{% block dynamic %}	
 	<div class="wrap">
 		<h1 class="login">Build your portfolio</h1>
 		<form action="/analyze" method="post">
-			<h3>Objective</h3>
+			<h3 class="build_portfolio_list">Objective</h3>
 			<input list="objective-list" name="objective" placeholder="Choose from the dropdown menu" required>
 		  		<datalist id="objective-list">
 			    	<option value="Capital growth">
@@ -12,15 +11,15 @@
 			    	<option value="Capital Preservation">
 			    	<option value="Speculation">
 				</datalist>
-			<h3>Time Horizon</h3>
+			<h3 class="build_portfolio_list">Time Horizon</h3>
 			<input list="time-horizon" name="time" placeholder="Choose from the dropdown menu" required>
 				<datalist id="time-horizon">
 					<option value="1-5 years">
 			    	<option value="5-10 years">
 			    	<option value="10+ years">
 			    </datalist>
-			<h3>Stocks</h3>
-			<input type="text" name="stocks" placeholder="Input your list of stocks" required>
+			<h3 class="build_portfolio_list">Stocks</h3>
+			<input type="text" name="stocks" placeholder="Input ticker symbols separated by commas: AAPL,MSTF,AMZN" required>
 			<button type="submit" class="btn btn-primary btn-block btn-large">Analyze</button>
 			
 		</form>
