@@ -21,7 +21,7 @@ app.config['SECRET_KEY'] = open('secret_key', 'rb').read()
 @app.route("/")
 def home():
 	return render_template("index.html",
-		dow_price=yahoo.dow_price,
+		dow_price=yahoo.final_dow,
 		dow_percent_change=yahoo.dow_change,
 		sp_price=yahoo.sp_price,
 		sp_percent_change=yahoo.sp_percent_change,
@@ -128,7 +128,7 @@ def stock_info(ticker):
 	return render_template("stock-info.html",
 		name=info.name,
 		market_cap=market_cap,
-		market_cap_exp=info.market_cap()
+		market_cap_exp=info.market_cap(),
 		num_beta=beta.calculate_beta(),
 		beta=beta.compare_beta(),
 		pe_num = pe,

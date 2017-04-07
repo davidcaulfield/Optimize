@@ -21,8 +21,10 @@ def get_dow():
 		)
 	response = requests.get(base, params)
 	return response.json()
+
 dow = get_dow()
 dow_price = dow['Value']['Close']
+final_dow = '%.2f' % dow_price
 dow_change = dow['Value']['PercentChangeFromPreviousClose']
 
 

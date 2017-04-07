@@ -50,6 +50,7 @@
 /*=============================================================================*/
 
 
+
 /*============================Block Dynamic index.html=========================*/
     
 
@@ -97,8 +98,17 @@
 
 .index-change{
     text-align: center;
-    color: white;
-}
+ }
+
+ #red{
+    color: #ff0000;
+    font-weight: bold;
+ }
+
+ #green{
+    color: #00ff00;
+    /*font-weight: bold;*/
+ }
 
 .home-quote{
     text-align: center;
