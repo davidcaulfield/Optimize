@@ -22,7 +22,7 @@ app.config['SECRET_KEY'] = open('secret_key', 'rb').read()
 def home():
 	return render_template("index.html",
 		dow_price=yahoo.final_dow,
-		dow_percent_change=yahoo.dow_change,
+		dow_percent_change=yahoo.float_dow,
 		sp_price=yahoo.sp_price,
 		sp_percent_change=yahoo.sp_percent_change,
 		nasdaq_price=yahoo.nasdaq_price,
@@ -113,7 +113,6 @@ def stock_info(ticker):
 	stock = Share(ticker)
 	name = stock.get_name()
 	price = stock.get_price()
-	market_cap = stock.get_market_cap()
 	pe = stock.get_price_earnings_ratio()
 	EPS = float(stock.get_EPS_estimate_current_year())
 	earn_yield = float(price)/EPS
@@ -123,12 +122,10 @@ def stock_info(ticker):
 	target = stock.get_one_yr_target_price()
 	fifty = stock.get_50day_moving_avg()
 	two_hundred = stock.get_200day_moving_avg()
-	info = Stock(name, price, market_cap, pe, final_yield, final_div, target, fifty, two_hundred)
+	info = Stock(name, price, pe, final_yield, final_div, target, fifty, two_hundred)
 	beta = Beta(ticker)
 	return render_template("stock-info.html",
 		name=info.name,
-		market_cap=market_cap,
-		market_cap_exp=info.market_cap(),
 		num_beta=beta.calculate_beta(),
 		beta=beta.compare_beta(),
 		pe_num = pe,
@@ -137,6 +134,9 @@ def stock_info(ticker):
 		ey=info.compare_earn_yield(),
 		div_num=final_div,
 		div=info.compare_div(),
+		fifty=fifty,
+		two=two_hundred,
+		ma_compare=info.compare_ma(),
 		target_num=target,
 		target=info.compare_target())
 
@@ -150,7 +150,7 @@ def chart_data(ticker):
 
 
 if __name__=="__main__":
-	app.run(host="127.0.0.1", port=5001, debug=True)
+	app.run(host="127.0.0.1", port=5000, debug=True)
 
 
 

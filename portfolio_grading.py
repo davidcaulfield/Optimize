@@ -48,7 +48,7 @@ the market beta of 1. This means that your portfolio is significantly less volit
 While this is may be good for investors who want to aviod risk, it does not fit the purpose of this
 portfolio. A speculative portfolio should hold a high number of stocks that have betas that are greater
 than the market beta. You should look replace some of the low beta stocks in your portfolio with stocks
-that have high betas. Look into the technology, biotechnology, mining, and energy stocksc to help
+that have high betas. Look into the technology, biotechnology, mining, and energy stocks to help
 fill these needs.'''
 		else:
 			return '''Over 70% of the stocks in your portfolio have a beta that is higher than the market beta.

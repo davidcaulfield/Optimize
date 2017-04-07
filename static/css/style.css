@@ -278,7 +278,6 @@
 
 .win{
     text-align: center;
-    text-decoration: underline;
     color: green;
     font-weight: bold;
 }
@@ -317,9 +316,26 @@
 
 .info_titles{
     font-weight: bold;
-    text-decoration: underline;
+    /*text-decoration: underline;*/
+    font-family: 'Droid serif';
+    margin-left: 40px;
+    margin-right: 40px;
+    font-size: 22px;
 }
 
+.individual_stock_info{
+    font-family: 'Droid serif';
+    margin-left: 40px;
+    margin-right: 40px;
+    font-size: 18px;
+}
 
+.individual_stock_title{
+    font-family: 'Droid serif';
+    text-align: center;
+    font-weight: bold;
+    text-decoration: underline;
+    font-size: 44px;  
+}
 
 

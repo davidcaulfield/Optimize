@@ -1,16 +1,16 @@
 {% extends "index.html" %}
 {% block dynamic %}
-<h2>{{ name }}</h2>
-<h4 class="info_titles">Market cap: {{ market_cap }}</h4>
-<p>{{ }}</p>
+<h2 class="individual_stock_title">{{ name }}</h2>
 <h4 class="info_titles">Price/Earnings Ratio: {{ pe_num }}x</h4>
-<p>{{ pe }}</p>
+<p class="individual_stock_info">{{ pe }}</p>
 <h4 class="info_titles">Beta: {{ num_beta }}</h4>
-<p>{{ beta }}</p>
+<p class="individual_stock_info">{{ beta }}</p>
 <h4 class="info_titles">Earnings Yield: {{ ey_num }}%</h4>
-<p>{{ ey }}</p>
+<p class="individual_stock_info">{{ ey }}</p>
 <h4 class="info_titles">Dividend Yield: {{ div_num }}%</h4>
-<p>{{ div }}</p>
+<p class="individual_stock_info">{{ div }}</p>
+<h4 class="info_titles">50 Day Moving Average: ${{ fifty }}, Two Hundred Day Moving Average: ${{ two }}</h4>
+<p class="individual_stock_info">{{ ma_compare }}</p>
 <h4 class="info_titles">Target Price: ${{ target_num }}</h4>
-<p>{{ target }}</p>
+<p class="individual_stock_info">{{ target }}</p>
 {% endblock %}

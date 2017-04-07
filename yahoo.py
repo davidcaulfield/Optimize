@@ -26,6 +26,8 @@ dow = get_dow()
 dow_price = dow['Value']['Close']
 final_dow = '%.2f' % dow_price
 dow_change = dow['Value']['PercentChangeFromPreviousClose']
+final_dow_change = '%.2f' % dow_change
+float_dow = float(final_dow_change)
 
 
 def portfolio_stocks(stocks):

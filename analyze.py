@@ -14,7 +14,6 @@ class Beta:
 		self.period = 12
 		self.stock_returns = self.calculate_stock_returns()
 		self.sp_returns = self.calculate_sp_returns()
-		# self.alpha = self.calculate_alpha()
 
 	def get_data(self):
 		stock = web.DataReader(self.symbol,'yahoo',self.start_date, self.end_date)
@@ -81,42 +80,18 @@ class Beta:
 
 
 
-
-
-	# def calculate_alpha(self):
-	# 	beta = self.calculate_beta()
-	# 	alpha = np.mean(self.stock_returns['stock_returns'])
-	# 	i = float(beta)*np.mean(self.sp_returns['sp_returns'])
-	# 	j = alpha - i
-	# 	annualized_alpha = j*self.period
-	# 	return annualized_alpha
-
-	# def calculate_r_squared(self):
-	# 	covariance = self.compute_covariance()
-	# 	alpha = self.calculate_alpha()
-	# 	beta = self.calculate_beta()
-	# 	ypred = alpha+beta*self.sp_returns['sp_returns']
-	# 	ss_res = np.sum(np.power(ypred-self.stock_returns['stock_returns'],2))
-	# 	ss_tot = covariance[0,0]*(len(self.stock_returns)-1)
-	# 	r_squared = 1.-ss_res/ss_tot
-	# 	return r_squared
-
-
-
-
 class Stock:
 
-	def __init__(self, name, price, market_cap, pe, earn_yield, final_div, target, fifty, two_hundred):
+	def __init__(self, name, price, pe, earn_yield, final_div, target, fifty, two_hundred):
 		self.name = name
 		# self.beta = self.compare_beta()
 		self.price = price
-		self.market_cap = market_cap
 		self.pe = pe
 		self.ey = earn_yield
 		self.div = final_div
 		self.target = target
 		self.stock_fifty = fifty
-		stock_two_hundred = two_hundred
+		self.stock_two_hundred = two_hundred
 
 
 	def compare_beta(self):
@@ -139,9 +114,6 @@ class Stock:
 	returns than the market, but when the market is falling, you should
 	expect to lose significantly more than the market.'''
 		return result
-
-	def market_cap_explain(self):
-		pass
 
 	def compare_pe(self):
 		if float(self.pe) > (17.5 - 1.5) and float(self.pe) < (17.5 + 1.5):
@@ -173,13 +145,16 @@ class Stock:
 
 
 	def compare_earn_yield(self):
-		if float(self.ey) > 3:
+		if float(self.ey) >= 3:
 			result = '''This company has a higher earnings yield than the market.
-	This is a good sign and means that the company is of good quality.'''
+	This is a good sign because it means the company has significant earnings power
+	which can drive the stock price higher in the future.'''
 		elif float(self.ey) < 3:
 			result = '''This company has a lower earnings yield than the market.
-	This is a bad sign and investors should ask questions as to why this, 
-	is happening.'''
+	This is a bad sign and investors should ask questions as to why this is happening.
+	It's possible that the lower earnings yield is justified, but investors need
+	to do some research to make sure that they aren't holding the stock of a 
+	low quality.'''
 		return result
 
 
@@ -195,20 +170,20 @@ class Stock:
 	market. This is a bad sign for investors who are looking to generate
 	income from their investments. However, a low dividend yield
 	could mean that the company is reinvesting into growth and
-	and that could lead to earnings growth and stock appreciation.'''
+	and that could lead to higher earnings and stock price appreciation.'''
 		return result
 
 	def compare_ma(self):
 		if float(self.stock_fifty) > float(self.stock_two_hundred):
-			result = '''This stocks 50 day moving average is above its 200
+			result = '''The 50 day moving average of this stock is above its 200
 	day moving average. This is a bullish sign. It means that there is
-	short term momentum in the stock. Investors should watch for the moment
+	short term momentum in the stock. Investors should watch for the signal
 	when the 50 day moving average drops below the 200 day moving average.
 	This is a bearish sign and means the the short term average price of the
 	stock is trading below its long term average price and is losing 
 	momentum.'''
 		elif float(self.stock_fifty) < float(self.stock_two_hundred):
-			result = '''This stocks 50 day moving average is below its 200
+			result = '''The 50 day moving average of this stock is below its 200
 	day moving average. This is a bearish sign. It means that there is
 	no short term momentum in the stock. Investors should watch for the moment
 	when the 50 day moving average crosses above the 200 day moving average.
@@ -220,11 +195,11 @@ class Stock:
 		if float(self.target) > float(self.price):
 			result = '''The target price for this stock is above its
 	current price. This is a good sign because it means analysts 
-	believe the stock is going to appreciate in value.'''
+	believe the stock is going to appreciate in value in the near future.'''
 		elif float(self.target) < float(self.price):
 			result = '''The target price for this stock is below its
 	current price. This is a bad sign because it means analysts 
-	believe the stock is going to depreciate in value.'''
+	believe the stock is going to depreciate in value in the near future.'''
 		return result
 
 
