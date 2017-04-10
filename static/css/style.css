@@ -54,7 +54,6 @@
 /*============================Block Dynamic index.html=========================*/
     
 
-
 #flex-container{
   display: flex;
   background: black;
@@ -63,7 +62,7 @@
 .box-one{
     height: 100px;
     min-width: 100px;
-    background: gray;
+    background: #a8a8a8;
     flex-grow: 1;
     margin: 20px;
 }
@@ -71,7 +70,7 @@
 .box-three{
     height: 100px;
     min-width: 100px;
-    background: gray;
+    background: #a8a8a8;
     flex-grow: 1;
     margin: 20px;
 }
@@ -79,7 +78,7 @@
 .box-two{
     height: 100px;
     min-width: 100px;
-    background: gray;
+    background: #a8a8a8;
     flex-grow: 1;
     margin: 20px;
 }
