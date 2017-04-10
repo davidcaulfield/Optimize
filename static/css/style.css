@@ -53,9 +53,7 @@
 
 /*============================Block Dynamic index.html=========================*/
     
-/*body{
-    background-color: #33FFFF;
-}*/
+
 
 #flex-container{
   display: flex;
@@ -289,7 +287,6 @@
 
 .lose{
     text-align: center;
-    text-decoration: underline;
     color: red;
     font-weight: bold;
 }
