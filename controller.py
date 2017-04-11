@@ -79,6 +79,9 @@ def analyze():
 
 @app.route("/analyzed")
 def analyzed(objective, time, stock_list):
+	session['objective'] = objective
+	session['time'] = time
+	session['stock_list'] = stock_list
 	stock = yahoo.portfolio_stocks(stock_list)
 	portfolio_one = portfolio_returns(stock_list)
 	final_portfolio_one, one_yr_change, sp_one_yr_change = final_portfolio_returns(portfolio_one)
@@ -106,8 +109,18 @@ def analyzed(objective, time, stock_list):
 		portfolio_beta=portfolio_beta,
 		portfolio_stats=obj)
 
+@app.route('/analyzed_home')
+def analyzed_home():
+	obj = session['objective']
+	stock_list = session['stock_list']
+	time = session['time']
+	return analyzed(obj, time, stock_list)
+
 @app.route("/stock-info/<ticker>", methods=['POST'])
 def stock_info(ticker):
+	obj = session['objective']
+	stock_list = session['stock_list']
+	time = session['time']
 	stock = Share(ticker)
 	name = stock.get_name()
 	price = stock.get_price()
@@ -136,7 +149,10 @@ def stock_info(ticker):
 		two=two_hundred,
 		ma_compare=info.compare_ma(),
 		target_num=target,
-		target=info.compare_target())
+		target=info.compare_target(),
+		obj=obj,
+		time=time,
+		stock=stock_list)
 
 @app.route("/chart-data/<ticker>", methods=['GET', 'POST'])
 def chart_data(ticker):

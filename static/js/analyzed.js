@@ -140,9 +140,20 @@ $(document).ready(function(){
     var portfolioGraphFive = $("#portfolio_vs_sp_five");
     var port_data_three = $('#portfolio_vs_sp_five').data('returns');
     createPortfolioGraph(port_data_three, portfolioGraphFive)
-
-
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
