@@ -3,38 +3,13 @@ import numpy as np
 import pandas_datareader.data as web
 import datetime
 from datetime import date, timedelta
+from chart_data import get_sp
 
 
 # 3 = 1095
 # 5 = 1825
 
 # =====================3 Year Returns=====================================================
-def get_sp_three():
-	end_date = date.today()
-	start_date = end_date - timedelta(days=1095)
-	sp = web.DataReader('^GSPC','yahoo', start_date, end_date)
-	adj = sp['Adj Close']
-	first_price = adj.iloc[0]
-	percent_returns = lambda x: (x/first_price-1)*100
-	returns = adj.apply(percent_returns)
-	returnss =returns[::3]
-	returns_list = returnss.tolist()
-	short_list = []
-	for i in returns_list:
-		short = '%.2f' % i
-		short_list.append(short)
-	datee = sp.index.values
-	date_list = []
-	for day in datee:
-		correct = str(day)[:10]
-		date_list.append(correct)
-	final_date_list = date_list[::3]
-	sp_name = ['S&P500']
-	sp_final = sp_name+short_list
-	date_name = ['Dates']
-	final_date = date_name+final_date_list
-	return dict(date_list=final_date, adj_list=sp_final)
-
 
 
 def portfolio_returns(tickers, day, step):
@@ -47,6 +22,7 @@ def portfolio_returns(tickers, day, step):
 		first_price = adj.iloc[0]
 		percent_returns = lambda x: (x/first_price-1)*100
 		returns = adj.apply(percent_returns)
+		print(step, day)
 		returnss = returns[::step]
 		final_list.append(returnss)			
 	grouped = zip(*final_list)
@@ -56,11 +32,11 @@ def portfolio_returns(tickers, day, step):
 def final_portfolio_returns_three(portfolio):
 	returns = ['Portfolio']
 	for i in portfolio:
-		avg_return = sum(i)/len(i)
-		short = '%.2f' % avg_return
-		returns.append(short)
+		avg_return = '%.2f' % float(sum(i)/len(i))
+		returns.append(avg_return)
+	print('len', len(returns))
 	total_portfolio_return = float(returns[-2])
-	sp = get_sp_three()
+	sp = get_sp(1095, 3)
 	total_sp_return = float('%.2f' % float(sp['adj_list'][-2]))
 	sp['Portfolio'] = returns
 	return sp, total_portfolio_return, total_sp_return
@@ -68,32 +44,6 @@ def final_portfolio_returns_three(portfolio):
 
 
 # =====================5 Year Returns=====================================================
-
-def get_sp_five():
-	end_date = date.today()
-	start_date = end_date - timedelta(days=1825)
-	sp = web.DataReader('^GSPC','yahoo', start_date, end_date)
-	adj = sp['Adj Close']
-	first_price = adj.iloc[0]
-	percent_returns = lambda x: (x/first_price-1)*100
-	returns = adj.apply(percent_returns)
-	returnss = returns[::5]
-	returns_list = returnss.tolist()
-	short_list = []
-	for i in returns_list:
-		short = '%.2f' % i
-		short_list.append(short)
-	datee = sp.index.values
-	date_list = []
-	for day in datee:
-		correct = str(day)[:10]
-		date_list.append(correct)
-	final_date_list = date_list[::5]
-	sp_name = ['S&P500']
-	sp_final = sp_name+short_list
-	date_name = ['Dates']
-	final_date = date_name+final_date_list
-	return dict(date_list=final_date, adj_list=sp_final)
 
 def portfolio_returns_five(tickers, day, step):
 	final_list = []
@@ -117,8 +67,9 @@ def final_portfolio_returns_five(portfolio):
 		avg_return = sum(i)/len(i)
 		short = '%.2f' % avg_return
 		returns.append(short)
+	print('len', len(returns))
 	total_portfolio_return = float(returns[-2])
-	sp = get_sp_five()
+	sp = get_sp(1825, 5)
 	total_sp_return = float('%.2f' % float(sp['adj_list'][-2]))
 	sp['Portfolio'] = returns
 	return sp, total_portfolio_return, total_sp_return
