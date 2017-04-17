@@ -5,7 +5,8 @@ import datetime
 from datetime import date, timedelta
 
 
-
+# 3 = 1095
+# 5 = 1825
 
 # =====================3 Year Returns=====================================================
 def get_sp_three():
@@ -36,20 +37,17 @@ def get_sp_three():
 
 
 
-def portfolio_returns_three(tickers):
+def portfolio_returns(tickers, day, step):
 	final_list = []
 	for i in tickers:
 		end_date = date.today()
-		start_date = end_date - timedelta(days=1095)
+		start_date = end_date - timedelta(days=day)
 		stock = web.DataReader(i,'yahoo', start_date, end_date)
 		adj = stock['Adj Close']
 		first_price = adj.iloc[0]
 		percent_returns = lambda x: (x/first_price-1)*100
-		# stock["Percent Change"] = (stock['Adj Close'].shift(3)/first_price-1) * 100
 		returns = adj.apply(percent_returns)
-		# returns = stock["Percent Change"].fillna(0)
-		# returns.fillna(0)
-		returnss = returns[::3]
+		returnss = returns[::step]
 		final_list.append(returnss)			
 	grouped = zip(*final_list)
 	return grouped
@@ -97,20 +95,18 @@ def get_sp_five():
 	final_date = date_name+final_date_list
 	return dict(date_list=final_date, adj_list=sp_final)
 
-def portfolio_returns_five(tickers):
+def portfolio_returns_five(tickers, day, step):
 	final_list = []
 	for i in tickers:
 		end_date = date.today()
-		start_date = end_date - timedelta(days=1825)
+		start_date = end_date - timedelta(days=day)
 		stock = web.DataReader(i,'yahoo', start_date, end_date)
 		adj = stock['Adj Close']
 		first_price = adj.iloc[0]
 		percent_returns = lambda x: (x/first_price-1)*100
-		# stock["Pecent Change"] = (stock['Adj Close']/first_price-1) * 100
 		returns = adj.apply(percent_returns)
-		returnss = returns[::5]
-		returns = returnss.tolist()
-		final_list.append(returns)			
+		returnss = returns[::step]
+		final_list.append(returnss)			
 	grouped = zip(*final_list)
 	return grouped
 

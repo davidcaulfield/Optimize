@@ -48,21 +48,6 @@ def final_chart_data(ticke):
 	sp['ticker'] = stock  #adding the new key value pair to dictionary
 	return sp
 
-def portfolio_returns(tickers):
-	final_list = []
-	for i in tickers:
-		end_date = date.today()
-		start_date = end_date - timedelta(days=365)
-		stock = web.DataReader(i,'yahoo', start_date, end_date)
-		adj = stock['Adj Close']
-		first_price = adj.iloc[0]
-		percent_returns = lambda x: (x/first_price-1)*100
-		# stock["Pecent Change"] = (stock['Adj Close']/first_price-1) * 100
-		returns = adj.apply(percent_returns)
-		returns = returns.tolist()
-		final_list.append(returns)			
-	grouped = zip(*final_list)
-	return grouped
 
 def final_portfolio_returns(portfolio):
 	returns = ['Portfolio']
