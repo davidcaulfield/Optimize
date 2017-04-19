@@ -22,10 +22,9 @@ def portfolio_returns(tickers, day, step):
 		first_price = adj.iloc[0]
 		percent_returns = lambda x: (x/first_price-1)*100
 		returns = adj.apply(percent_returns)
-		print(step, day)
 		returnss = returns[::step]
-		final_list.append(returnss)			
-	grouped = zip(*final_list)
+		final_list.append(returnss)
+	grouped = zip(*final_list) #groups each days returns together so I can get average
 	return grouped
 
 
@@ -34,7 +33,6 @@ def final_portfolio_returns_three(portfolio):
 	for i in portfolio:
 		avg_return = '%.2f' % float(sum(i)/len(i))
 		returns.append(avg_return)
-	print('len', len(returns))
 	total_portfolio_return = float(returns[-2])
 	sp = get_sp(1095, 3)
 	total_sp_return = float('%.2f' % float(sp['adj_list'][-2]))
@@ -67,7 +65,6 @@ def final_portfolio_returns_five(portfolio):
 		avg_return = sum(i)/len(i)
 		short = '%.2f' % avg_return
 		returns.append(short)
-	print('len', len(returns))
 	total_portfolio_return = float(returns[-2])
 	sp = get_sp(1825, 5)
 	total_sp_return = float('%.2f' % float(sp['adj_list'][-2]))

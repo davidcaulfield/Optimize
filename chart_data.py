@@ -29,7 +29,6 @@ def get_sp(day, step):
 	sp_final = sp_name+short_list
 	date_name = ['Dates']
 	final_date = date_name+date_list
-	print('len sp ', len(sp_final))
 	return dict(date_list=final_date, adj_list=sp_final)
 
 def get_stock_data(ticker):
@@ -49,16 +48,15 @@ def final_chart_data(ticker):
 	sp = get_sp(365, 1)
 	stock = get_stock_data(ticker)
 	sp['ticker'] = stock  #adding the new key value pair to dictionary
-	return sp
+	return sp # returns the data for individual stocks vs sp chart
 
 
 def final_portfolio_returns(portfolio):
 	returns = ['Portfolio']
 	for i in portfolio:
 		avg_return = '%.2f' % float(sum(i)/len(i))
-		returns.append(avg_return)
-	print('len ', len(returns))
-	last = returns[-2]
+		returns.append(avg_return) #gets average daily return for portfolio 
+	last = returns[-2] #gets total return for portfolio over timeframe
 	sp = get_sp(365, 1)
 	sp['Portfolio'] = returns
 	sp_last = '%.2f' % float(sp['adj_list'][-2])
