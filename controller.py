@@ -1,15 +1,10 @@
 from flask import Flask, render_template, session, request
 import requests
 import models
-# from wrapper import Global_Historical
-import wrapper
 import yahoo
 from analyze import Stock, Beta
-
 from yahoo_finance import Share
-from chart_data import final_portfolio_returns, final_chart_data
-# import chart_data
-import chart_data_2yr 
+from chart_data import *
 from portfolio_stats import calculate_portfolio_beta
 import json
 from portfolio_grading import check_objective
@@ -84,14 +79,14 @@ def analyzed(objective, time, stock_list):
 	session['time'] = time
 	session['stock_list'] = stock_list
 	stock = yahoo.portfolio_stocks(stock_list)
-	portfolio_one = chart_data_2yr.portfolio_returns(stock_list, 365, 1)
+	portfolio_one = portfolio_returns(stock_list, 365, 1)
 	final_portfolio_one, one_yr_change, sp_one_yr_change = final_portfolio_returns(portfolio_one)
 	json_portfolio_one = json.dumps(final_portfolio_one)
-	portfolio_three = chart_data_2yr.portfolio_returns(stock_list, 1095, 3)
-	final_portfolio_three, three_yr_change, sp_three_yr_change = chart_data_2yr.final_portfolio_returns_three(portfolio_three)
+	portfolio_three = portfolio_returns(stock_list, 1095, 3)
+	final_portfolio_three, three_yr_change, sp_three_yr_change = final_portfolio_returns_three(portfolio_three)
 	json_portfolio_three = json.dumps(final_portfolio_three)
-	portfolio_five = chart_data_2yr.portfolio_returns(stock_list, 1825, 5)
-	final_portfolio_five, five_yr_change, sp_five_yr_change = chart_data_2yr.final_portfolio_returns_five(portfolio_five)
+	portfolio_five = portfolio_returns(stock_list, 1825, 5)
+	final_portfolio_five, five_yr_change, sp_five_yr_change = final_portfolio_returns_five(portfolio_five)
 	json_portfolio_five = json.dumps(final_portfolio_five)
 	portfolio_beta = calculate_portfolio_beta(stock_list)
 	obj = check_objective(objective, stock_list, time)

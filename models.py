@@ -1,6 +1,5 @@
 import psycopg2
 from psycopg2.extras import RealDictCursor
-import wrapper
 
 conn = psycopg2.connect(dbname="optimize")
 

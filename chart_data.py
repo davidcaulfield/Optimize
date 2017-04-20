@@ -4,7 +4,7 @@ import pandas_datareader.data as web
 import datetime
 from datetime import date, timedelta
 
-
+# ==============================1 year==========================================================
 def get_sp(day, step):
 	end_date = date.today()
 	start_date = end_date - timedelta(days=day)
@@ -61,6 +61,66 @@ def final_portfolio_returns(portfolio):
 	sp['Portfolio'] = returns
 	sp_last = '%.2f' % float(sp['adj_list'][-2])
 	return sp, last, sp_last
+
+
+def portfolio_returns(tickers, day, step):
+	final_list = []
+	for i in tickers:
+		end_date = date.today()
+		start_date = end_date - timedelta(days=day)
+		stock = web.DataReader(i,'yahoo', start_date, end_date)
+		adj = stock['Adj Close']
+		first_price = adj.iloc[0]
+		percent_returns = lambda x: (x/first_price-1)*100
+		returns = adj.apply(percent_returns)
+		returnss = returns[::step]
+		final_list.append(returnss)
+	grouped = zip(*final_list) #groups each days returns together so I can get average
+	return grouped
+
+# ==============================3 year==========================================================
+
+def final_portfolio_returns_three(portfolio):
+	returns = ['Portfolio']
+	for i in portfolio:
+		avg_return = '%.2f' % float(sum(i)/len(i))
+		returns.append(avg_return)
+	total_portfolio_return = float(returns[-1])
+	sp = get_sp(1095, 3)
+	total_sp_return = float('%.2f' % float(sp['adj_list'][-1]))
+	sp['Portfolio'] = returns
+	return sp, total_portfolio_return, total_sp_return
+
+
+# ==============================5 year==========================================================
+
+def portfolio_returns_five(tickers, day, step):
+	final_list = []
+	for i in tickers:
+		end_date = date.today()
+		start_date = end_date - timedelta(days=day)
+		stock = web.DataReader(i,'yahoo', start_date, end_date)
+		adj = stock['Adj Close']
+		first_price = adj.iloc[0]
+		percent_returns = lambda x: (x/first_price-1)*100
+		returns = adj.apply(percent_returns)
+		returnss = returns[::step]
+		final_list.append(returnss)			
+	grouped = zip(*final_list)
+	return grouped
+
+
+def final_portfolio_returns_five(portfolio):
+	returns = ['Portfolio']
+	for i in portfolio:
+		avg_return = sum(i)/len(i)
+		short = '%.2f' % avg_return
+		returns.append(short)
+	total_portfolio_return = float(returns[-1])
+	sp = get_sp(1825, 5)
+	total_sp_return = float('%.2f' % float(sp['adj_list'][-1]))
+	sp['Portfolio'] = returns
+	return sp, total_portfolio_return, total_sp_return
 
 
 

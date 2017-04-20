@@ -1,8 +1,6 @@
 from analyze import Beta
 from yahoo import Share
 
-
-
 def check_objective(objective, stocks, time):
 	if objective == 'Speculation':
 		stock = Portfolio_info_speculation(stocks,time)
