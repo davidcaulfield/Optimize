@@ -89,27 +89,6 @@ class Stock:
 		self.stock_fifty = fifty
 		self.stock_two_hundred = two_hundred
 
-	# def compare_beta(self):
-	# 	if stock_beta < 1 and stock_beta:
-	# 		result = "This stock is risky than the market."
-	# 	elif stock_beta < 0:
-	# 		result = '''This stock tends to move in the opposite direction.
-	# This property gives the investor protection when the market falls.'''
-	# 	elif stock_beta >= 1 and stock_beta <= 1.3:
-	# 		result = '''This stock tends to move in the same direction as the market, 
-	# but its movements are slightly more dramatic. When the market 
-	# is rising, this stock tends to produce slightly superior returns 
-	# compared to the market. When the market falls, this stock tends to 
-	# fall by a greater percentage than the overall market.'''
-	# 	elif stock_beta > 1.3:
-	# 		result = '''This stock has been significantly more volitale than the market
-	# in the past and this makes it a risky stock to hold. This company tends
-	# to be 50% more volitale than the market. This means that when the 
-	# market is rising, you can expect to to earn significantly higher 
-	# returns than the market, but when the market is falling, you should
-	# expect to lose significantly more than the market.'''
-	# 	return result
-
 	def compare_pe(self):
 		print(type(self.pe), 'compare pe')
 		if float(self.pe) > (17.5 - 1.5) and float(self.pe) < (17.5 + 1.5):
