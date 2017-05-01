@@ -17,7 +17,7 @@ def get_sp(day, step):
 	returns_list = returnss.tolist()
 	short_list = []
 	for i in returns_list:
-		short = '%.2f' % i
+		short = round(i,2)
 		short_list.append(short)
 	datee = sp.index.values
 	date_list = []
@@ -83,7 +83,7 @@ def portfolio_returns(tickers, day, step):
 def final_portfolio_returns_three(portfolio):
 	returns = ['Portfolio']
 	for i in portfolio:
-		avg_return = '%.2f' % float(sum(i)/len(i))
+		avg_return = round(float(sum(i)/len(i)),2)
 		returns.append(avg_return)
 	total_portfolio_return = float(returns[-1])
 	sp = get_sp(1095, 3)

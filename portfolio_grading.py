@@ -45,7 +45,7 @@ the market beta of 1. This means that your portfolio is significantly less volit
 While this is may be good for investors who want to aviod risk, it does not fit the purpose of this
 portfolio. A speculative portfolio should hold a high number of stocks that have betas that are greater
 than the market beta. You should look replace some of the low beta stocks in your portfolio with stocks
-that have high betas. Look into the technology, biotechnology, mining, and energy stocks to help
+that have high betas. Look into technology, biotechnology, mining, and energy stocks to help
 fill these needs.'''
 		else:
 			return '''Over 70% of the stocks in your portfolio have a beta that is higher than the market beta.
@@ -61,7 +61,7 @@ of the company. Speculation usually occurs in a timeframe of less than a year.''
 			return '''It is difficut to judge speculative stocks based on fundamentals such as the P/E Ratio or earnings yield.
 Investors typically hold these stocks based on a "hunch" that the price will increase. There is no way to judge whether
 or not a stock is a "good" speculative speculative stock or not. The choice of these stocks relies on each individual
-investors justification for holding the stock.'''
+investor's justification for holding the stock.'''
 		else:
 			return '''It does not make sense to hold a long term specualtive portfolio. Speculation is usually based on 
 short term price movements in stocks. If you want to hold stocks over a longer period of time you will need to choose a
@@ -80,21 +80,22 @@ class Portfolio_info_income:
 		div_list = self.get_divs(stock)
 		score = self.compare_divs(div_list)
 		if score == len(stock)*2:
-			return '''Every stock in this portfolio has the type of dividend yield that you want in an income portfolio. Every stock in this
+			return '''Every stock in this portfolio has the type of dividend yield that you want in an income portfolio. Each stock in this
 portfolio has a higher dividend yield than the yield on a 10-year risk free bond. Dividend yield is arguarbly the most important thing to consider when 
 builing an income portfolio. You want to do some extra research though to make sure that the underlying fundamentals of these
-companies are strong. It is important to know that a company with a high dividend yield has enough earning power to continue 
+companies are strong. It is important to know that a company with a high dividend yield has enough earnings power to continue 
 paying its dividend.'''
 		elif score >= len(stock) and score <= len(stock)*2:
 			return '''This portfolio holds some good stocks to get income, but there is still some room for improvement. The
 average yield on a stock in your portfolio is greater than the yield on the S&P500, but less than the yield on a 10-year risk
 free bond. You should consider identifying the compainies with dividend yields that are less than the 10-year bond yield in
 this portfolio, and replace them with companies that have higher yields. To find these stocks, look in high dividend paying
-industries such as utilities, REIT's, and even financial institutions.'''
+sectors such as utilities, REIT's, and even financials.'''
 		else:
 			return '''These stocks are not fit for an income portfolio. The aveage dividend yield on a stock in this portfolio is
-less than the yield on the S&P500. Consider looking into high dividend paying sectors such as utilities, REIT's, and financial
-institutions to find stocks that will provide you with significantly higher yields.'''   
+less than the yield on the S&P500. Consider looking into high dividend paying sectors such as utilities, REIT's, and financials to 
+find stocks that will provide you with significantly higher yields. Ideally you want to find stocks that offer a higher yield
+than the yield on a risk free government bond.'''   
 
 	def get_divs(self, stocks):
 		div_list = []
@@ -127,13 +128,13 @@ institutions to find stocks that will provide you with significantly higher yiel
 higher than the market beta of 1. This is not a good sign in a portfolio designed around an income objective.
 Investors who are looking for income want to hold stocks that are less risky than the overall market. This means
 finding companies with high dividend yields and betas that are very close to or lower than 1. Look to sectors such
-as utilities, REIT's, and financial institutions to find companies that meet these requirements.'''
+as utilities, REIT's, and financial to find companies that meet these requirements.'''
 		else:
 			return '''A majority of the stocks in this portfolio have a beta that is less than the market beta. This
 means that the portfolio is less voliatile than the market and that is a good thing for income investors. Income
-investors try to identify stocks that pay high dividend yields and are less risky than the market. They may not
-realize all the potential gains during periods when the market rises significantly, but the can sleep soundly at night
-knowing that when the market falls, their low voliatility stocks will lose less than the market and they will still
+investors try to identify stocks that have high dividend yields and are less risky than the market. They may not
+realize all the potential gains during periods when the market rises significantly, but they can sleep soundly at night
+knowing that when the market falls, their low beta stocks will fall less than the market and they will still
 recieve the dividends.''' 
 
 	def portfolio_beta_list(self, stocks):
@@ -147,7 +148,7 @@ recieve the dividends.'''
 	def score_betas(self, beta_list):
 		score = 0
 		for i in beta_list:
-			if i < 1.1:
+			if i < 1.2:
 				score+=1
 			else:
 				score+=0

@@ -24,9 +24,9 @@ def get_dow():
 
 dow = get_dow()
 dow_price = dow['Value']['Close']
-final_dow = '%.2f' % dow_price
+final_dow = round(dow_price, 2)
 dow_change = dow['Value']['PercentChangeFromPreviousClose']
-final_dow_change = '%.2f' % dow_change
+final_dow_change = round(dow_change, 2)
 float_dow = float(final_dow_change)
 
 
@@ -65,18 +65,19 @@ def portfolio_stocks(stocks):
 		
 		earn_yield = float(final_eps)/float(price) #returns float of earnings yield
 		pos_ey = earn_yield if earn_yield > 0 else 0 #turns negitive numbers to 0
-		ey = float('%.2f' % float(pos_ey))*100 #returns in % format
+		print(tick, 'earn yield', pos_ey)
+		ey = round(pos_ey*100, 2) #returns in % format
 		
 		div = ticker.get_dividend_yield() #returns div in string
 		final_div = 0 if div == None else float(div) #if no result returns 0 else returns float of div 
 		
 		fifty = ticker.get_50day_moving_avg() #returns as string
-		short_fifty = '%.2f' % float(fifty) #returns div with 2 decimal places
+		short_fifty = round(float(fifty), 2) #returns div with 2 decimal places
 		two_hundred = ticker.get_200day_moving_avg() #returns as string
-		short_two = '%.2f' % float(two_hundred) #returns float with 2 decimal places
+		short_two = round(float(two_hundred), 2) #returns float with 2 decimal places
 
 		target = ticker.get_one_yr_target_price() #returns as string
-		short_target = '%.2f' % float(target)
+		short_target = round(float(target), 2)
 
 		values = [comp_name, tick, price, market_cap, final_pe, ey, final_div, short_fifty, short_two, short_target]
 		final_values = list(zip(names, values))

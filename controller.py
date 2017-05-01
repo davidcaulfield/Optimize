@@ -121,8 +121,9 @@ def stock_info(ticker):
 	name = stock.get_name()
 	price = stock.get_price()
 	pe = stock.get_price_earnings_ratio()
+	final_pe = 0 if not pe else pe
 	EPS = float(stock.get_EPS_estimate_current_year())
-	earn_yield = float(price)/EPS
+	earn_yield = 0 if float(EPS) <= 0 else float(price)/EPS
 	final_yield = '%.2f' % earn_yield
 	div = stock.get_dividend_yield()
 	final_div = 0 if div == None else div
@@ -135,7 +136,7 @@ def stock_info(ticker):
 		name=info.name,
 		num_beta=beta.calculate_beta(),
 		beta=beta.compare_beta(),
-		pe_num = pe,
+		pe_num = final_pe,
 		pe=info.compare_pe(),
 		ey_num=final_yield,
 		ey=info.compare_earn_yield(),

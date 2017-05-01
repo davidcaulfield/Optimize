@@ -55,10 +55,12 @@ class Beta:
 
 	def compare_beta(self):
 		stock_beta = self.calculate_beta()
-		if float(stock_beta) < 1:
-			result = "This stock is risky than the market."
+		if float(stock_beta) < 1 and float(stock_beta)< 0:
+			result = '''This stock is less risky than the overall market. When the market rises, this
+		stock performance tends to lag, but when the market falls, this stock will decline less than the 
+		overall market.'''
 		elif float(stock_beta) < 0:
-			result = '''This stock tends to move in the opposite direction.
+			result = '''This stock tends to move in the opposite direction of the market.
 	This property gives the investor protection when the market falls.'''
 		elif float(stock_beta) >= 1 and float(stock_beta) <= 1.3:
 			result = '''This stock tends to move in the same direction as the market, 
@@ -68,11 +70,10 @@ class Beta:
 	fall by a greater percentage than the overall market.'''
 		elif float(stock_beta) > 1.3:
 			result = '''This stock has been significantly more volitale than the market
-	in the past and this makes it a risky stock to hold. This company tends
-	to be 50\%' more volitale than the market. This means that when the 
+	in the past and this makes it a risky stock to hold. This means that when the 
 	market is rising, you can expect to to earn significantly higher 
 	returns than the market, but when the market is falling, you should
-	expect to lose significantly more than the market.'''
+	expect to lose significantly more than the overall market.'''
 		return result
 
 
@@ -81,39 +82,43 @@ class Stock:
 	def __init__(self, name, price, pe, earn_yield, final_div, target, fifty, two_hundred):
 		self.name = name
 		self.price = price
-		self.pe = pe
+		self.pe = 0 if not pe else pe
 		self.ey = earn_yield
 		self.div = final_div
 		self.target = target
 		self.stock_fifty = fifty
 		self.stock_two_hundred = two_hundred
 
-	def compare_beta(self):
-		if stock_beta < 1:
-			result = "This stock is risky than the market."
-		elif stock_beta < 0:
-			result = '''This stock tends to move in the opposite direction.
-	This property gives the investor protection when the market falls.'''
-		elif stock_beta >= 1 and stock_beta <= 1.3:
-			result = '''This stock tends to move in the same direction as the market, 
-	but its movements are slightly more dramatic. When the market 
-	is rising, this stock tends to produce slightly superior returns 
-	compared to the market. When the market falls, this stock tends to 
-	fall by a greater percentage than the overall market.'''
-		elif stock_beta > 1.3:
-			result = '''This stock has been significantly more volitale than the market
-	in the past and this makes it a risky stock to hold. This company tends
-	to be 50\%' more volitale than the market. This means that when the 
-	market is rising, you can expect to to earn significantly higher 
-	returns than the market, but when the market is falling, you should
-	expect to lose significantly more than the market.'''
-		return result
+	# def compare_beta(self):
+	# 	if stock_beta < 1 and stock_beta:
+	# 		result = "This stock is risky than the market."
+	# 	elif stock_beta < 0:
+	# 		result = '''This stock tends to move in the opposite direction.
+	# This property gives the investor protection when the market falls.'''
+	# 	elif stock_beta >= 1 and stock_beta <= 1.3:
+	# 		result = '''This stock tends to move in the same direction as the market, 
+	# but its movements are slightly more dramatic. When the market 
+	# is rising, this stock tends to produce slightly superior returns 
+	# compared to the market. When the market falls, this stock tends to 
+	# fall by a greater percentage than the overall market.'''
+	# 	elif stock_beta > 1.3:
+	# 		result = '''This stock has been significantly more volitale than the market
+	# in the past and this makes it a risky stock to hold. This company tends
+	# to be 50% more volitale than the market. This means that when the 
+	# market is rising, you can expect to to earn significantly higher 
+	# returns than the market, but when the market is falling, you should
+	# expect to lose significantly more than the market.'''
+	# 	return result
 
 	def compare_pe(self):
+		print(type(self.pe), 'compare pe')
 		if float(self.pe) > (17.5 - 1.5) and float(self.pe) < (17.5 + 1.5):
 			result = '''This stock has a price-to-earnings ratio that is very
 	close to the market price-to-earnings ratio. This means that the stock and
 	S&P500 are valued at about the same level.'''
+		elif float(self.pe) == 0:
+			result = '''This stock has negative earnings, which means that you cannot analyze the stock 
+	by using a P/E ratio.'''
 		elif float(self.pe) < (17.5 - 1.5):
 			result =  '''This stock has a lower price-to-earnings ratio than the
 	market. This means that investors are giving this stock a lower valuation
@@ -143,12 +148,17 @@ class Stock:
 			result = '''This company has a higher earnings yield than the market.
 	This is a good sign because it means the company has significant earnings power
 	which can drive the stock price higher in the future.'''
-		elif float(self.ey) < 3:
+		elif float(self.ey) < 3 and float(self.ey)> 0:
 			result = '''This company has a lower earnings yield than the market.
 	This is a bad sign and investors should ask questions as to why this is happening.
 	It's possible that the lower earnings yield is justified, but investors need
 	to do some research to make sure that they aren't holding the stock of a 
 	low quality.'''
+		elif float(self.ey) <= 0:
+			result = '''This stock has negative earnings, which means that it does
+	not have an earnings yield. You will need to look at other factors that aren't dependent on
+	earnings to analyze this comapny.'''
+
 		return result
 
 
@@ -159,6 +169,9 @@ class Stock:
 	income from their investments. However, a high dividend yield
 	could mean that the company isn't reinvesting into growth and
 	and it is unlikely to see high earnings growth or capital apprciation.'''
+		elif float(self.div) <= 0:
+			result = '''This comany does not pay a dividend. You will need to look
+	at other factors to analyze this stock.'''
 		elif float(self.div) < 1.95:
 			result = '''This company has a lower dividend yield than the
 	market. This is a bad sign for investors who are looking to generate
