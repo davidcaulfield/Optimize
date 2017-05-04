@@ -55,7 +55,8 @@ class Beta:
 
 	def compare_beta(self):
 		stock_beta = self.calculate_beta()
-		if float(stock_beta) < 1 and float(stock_beta)< 0:
+		print(stock_beta)
+		if float(stock_beta) < 1 and float(stock_beta) > 0:
 			result = '''This stock is less risky than the overall market. When the market rises, this
 		stock performance tends to lag, but when the market falls, this stock will decline less than the 
 		overall market.'''
